@@ -28,7 +28,6 @@ public class HelloApplication extends Application {
         nuevoStage.show();
 
         stage.setMaximized(true);
-        System.out.println("holaaaa");
     }
 
     public static void main(String[] args) {
