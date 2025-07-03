@@ -1,0 +1,7 @@
+.button {
+    -fx-background-color: #5DF563; /* Color de fondo del botón */
+    -fx-font-weight: bold;          /* Texto en negrita */
+    -fx-text-fill: black;           /* Color del texto (opcional) */
+    -fx-background-radius: 8;      /* Bordes redondeados */
+    -fx-padding: 10 20 10 20;       /* Espaciado interno (opcional) */
+}
