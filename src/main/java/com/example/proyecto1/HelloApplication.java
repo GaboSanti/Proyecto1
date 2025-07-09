@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
 
 
         //SEGUNDA PANTALLA, INVESTIGAR COMO PASAR A LA OTRA PANTALLA APARTIR DE UN BOTON Y QUE NO SE ABRAN AL MISMO TIEMPO
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Horario.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
         Parent root = loader.load();
         Stage nuevoStage = new Stage();
         nuevoStage.setTitle("Horario");
