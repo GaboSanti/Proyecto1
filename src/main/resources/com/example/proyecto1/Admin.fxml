@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.AdminController">
     <children>
         <Separator layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" />
         <Separator layoutX="200.0" layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
@@ -36,7 +36,7 @@
       <DatePicker fx:id="fecha_cierre" layoutX="373.0" layoutY="124.0" prefHeight="9.0" prefWidth="174.0" promptText="Ingrese la fecha de cierre" />
       <Label layoutX="117.0" layoutY="92.0" prefHeight="17.0" prefWidth="174.0" text="INGRESE LA FECHA DE INICIO" />
         <Label layoutX="372.0" layoutY="92.0" prefHeight="17.0" prefWidth="174.0" text="INGRESE LA FECHA DE CIERRE" />
-      <Button fx:id="btnAsignar" layoutX="433.0" layoutY="188.0" mnemonicParsing="false" text="Asignar" />
+      <Button fx:id="btnAsignar" layoutX="433.0" layoutY="188.0" mnemonicParsing="false" onAction="#onAsignarFecha" text="Asignar" />
       <Button fx:id="btnExportar" layoutX="149.0" layoutY="188.0" mnemonicParsing="false" text="Exportar ">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
