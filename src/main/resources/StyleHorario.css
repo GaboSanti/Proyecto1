@@ -1,9 +1,26 @@
-.button {
-    -fx-background-color: #5DF563; /* Color de fondo del botón */
-    -fx-font-weight: bold;          /* Texto en negrita */
-    -fx-text-fill: black;           /* Color del texto (opcional) */
-    -fx-background-radius: 8;      /* Bordes redondeados */
-    -fx-padding: 10 20 10 20;       /* Espaciado interno (opcional) */
+/* Estilo general solo para los botones principales */
+#btnPerfil,
+#btnHorario,
+#btnAdmin,
+#btnSalir,
+#btnGuardar,
+#btnModificar {
+    -fx-background-color: #5DF563;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+}
+
+/* Estilo solo para botones dentro del GridPane */
+.grid-pane .button {
+    -fx-background-color: #FF6666;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-background-radius: 0;
+    -fx-padding: 4 8 4 8; /* Espaciado más ajustado */
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1;
 }
 
 
