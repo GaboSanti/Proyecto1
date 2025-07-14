@@ -8,23 +8,21 @@
 <AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../../StyleHorario.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.HorarioController">
     <children>
 
-        <!-- Separadores -->
+
         <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="57.0" />
         <Separator layoutX="101.0" prefHeight="3.0" prefWidth="1099.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0" />
         <Separator prefHeight="3.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
         <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="57.0" />
         <Separator orientation="VERTICAL" prefHeight="490.0" prefWidth="6.0" stylesheets="@../../../StyleHorario.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="210.0" />
 
-        <!-- Botones de navegación -->
+
         <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
         <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
         <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
-        <!-- Logo superior izquierdo -->
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
 
-        <!-- Título -->
         <Label layoutX="495.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="17.0">
             <font>
                 <Font name="System Bold" size="26.0" />
@@ -42,7 +40,7 @@
             </font></Label>
 
         <!-- Tabla de horario -->
-        <GridPane fx:id="gridHorario" gridLinesVisible="true" prefHeight="533.0" prefWidth="1087.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="88.0">
+        <GridPane fx:id="gridPaneHorario" gridLinesVisible="true" prefHeight="533.0" prefWidth="1087.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="88.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28" />

@@ -1,4 +1,10 @@
+package com.example.proyecto1;
+
+import javafx.fxml.FXML;
+
+
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -20,18 +26,26 @@ public class HorarioController {
 
     @FXML
     public void initialize() {
-        // Asegura que el Stage esté listo antes de usarlo
-        Platform.runLater(() -> {
-            // Obtener el Stage desde el pane raíz
-            Stage stage = (Stage) paneHorario.getScene().getWindow();
+        for (javafx.scene.Node node : gridPaneHorario.getChildren()) {
+            if (node instanceof Button) {
+                Button boton = (Button) node;
 
-            // Maximizar la ventana
-            stage.setMaximized(true);
 
-            // Asegurar que el contenido se reacomode correctamente
-            stage.setResizable(true);
-            paneHorario.requestLayout();
-            gridPaneHorario.requestLayout();
-        });
+                boton.setStyle("-fx-background-color: #FF6666; -fx-border-color: black; -fx-border-width: 1px;");
+
+
+                boton.setOnAction(e -> {
+                    String currentStyle = boton.getStyle();
+                    if (currentStyle.contains("#FF6666")) {
+
+                        boton.setStyle("-fx-background-color: #5DF563; -fx-border-color: black; -fx-border-width: 1px;");
+                    } else {
+                        boton.setStyle("-fx-background-color: #FF6666; -fx-border-color: black; -fx-border-width: 1px;");
+                    }
+                });
+            }
+        }
+
     }
 }
+
