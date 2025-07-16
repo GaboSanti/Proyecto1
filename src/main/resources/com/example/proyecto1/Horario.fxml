@@ -68,20 +68,20 @@
                 <RowConstraints prefHeight="2.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                <Button fx:id="btnLU07" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="btnLU08" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="btnLU09" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Button fx:id="btnLU10" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="btnLU11" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Button fx:id="btnLU12" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Button fx:id="btnLU18" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                <Button fx:id="btnLU17" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                <Button fx:id="btnLU16" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                <Button fx:id="btnLU15" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                <Button fx:id="btnLU14" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <Button fx:id="btnLU13" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <Button fx:id="btnLU19" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                <Button fx:id="btnLU20" maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="1" GridPane.rowIndex="14" />
                 <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="155.0" text="      " GridPane.columnIndex="2" GridPane.rowIndex="3" />

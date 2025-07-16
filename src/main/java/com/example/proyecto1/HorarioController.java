@@ -13,6 +13,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.Node;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class HorarioController {
 
@@ -47,5 +54,31 @@ public class HorarioController {
         }
 
     }
+
+    @FXML
+    private void guardarJSON() {
+        //el mapeo que nos explicaron
+        Map<String, List<Integer>> horarioMap = new LinkedHashMap<>();
+        String[] dias = {"LU", "MA", "MI", "JU", "VI"};
+        for (String dia : dias) {
+            horarioMap.put(dia, new ArrayList<>());
+        }
+
+        for (javafx.scene.Node node : gridPaneHorario.getChildren()) {
+            if (node instanceof Button boton) {
+                if (boton.getStyle().contains("#5DF563")) {
+                    String id = boton.getId();
+
+                }
+
+            }
+        }
+
+    }
 }
+
+
+
+
+
 
