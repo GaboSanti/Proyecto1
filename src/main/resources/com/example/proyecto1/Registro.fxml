@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="832.0" maxWidth="1280.0" minHeight="832.0" minWidth="1280.0" prefHeight="832.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.RegistroController">
+    <VBox fx:id="formulario" alignment="CENTER" layoutX="450.0" layoutY="90.0" prefHeight="466.0" prefWidth="388.0" spacing="12" stylesheets="@../../../StyleRegistro.css" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="90.0">
+
+        <Label styleClass="title" text="REGISTRO" />
+
+        <TextField fx:id="txtNombre" promptText="NOMBRE" />
+
+        <HBox alignment="CENTER" spacing="10">
+            <TextField fx:id="txtApellido1" prefWidth="184.0" promptText="APELLIDO PATERNO" />
+            <TextField fx:id="txtApellido2" prefWidth="184.0" promptText="APELLIDO MATERNO" />
+        </HBox>
+
+        <ComboBox fx:id="comboBox" prefWidth="501.0" promptText="GRADO ACADÉMICO">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Licenciatura" />
+                    <String fx:value="Maestría" />
+                    <String fx:value="Doctorado" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <TextField fx:id="txtCorreo1" promptText="CORREO INSTITUCIONAL" />
+        <TextField fx:id="txtCorreo2" promptText="CORREO PERSONAL" />
+        <TextField fx:id="txtTelefono" promptText="TELÉFONO" />
+        <PasswordField fx:id="txtPassword" promptText="CONTRASEÑA" />
+
+        <Button fx:id="btn_registrar" onAction="#inicializar" styleClass="register-button" text="REGISTRAR" />
+    </VBox>
+</AnchorPane>
