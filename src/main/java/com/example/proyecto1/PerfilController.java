@@ -1,5 +1,4 @@
 package com.example.proyecto1;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 
@@ -22,13 +20,13 @@ public class PerfilController {
     @FXML private Label lblCorreo_institucional;
     @FXML private Label lblCorreo_personal;
     @FXML private Label lblTelefono;
-    @FXML private ComboBox comBox_grado;
+    @FXML private ComboBox<String> comBox_grado;
     @FXML private Button btnModificar_correo;
     @FXML private Button btnModificar_telefono;
-
     @FXML private TextField correoField;
     @FXML private TextField telefonoField;
 
+    @FXML
     public void onModificarCorreo() {
         correoField.setText(lblCorreo_personal.getText());
         correoField.setVisible(true);
@@ -47,51 +45,43 @@ public class PerfilController {
     @FXML
     public void onGuardar() {
         String nuevoCorreo = correoField.getText().trim();
-        lblCorreo_personal.setText(nuevoCorreo);
+        if (!nuevoCorreo.isEmpty()) {
+            lblCorreo_personal.setText(nuevoCorreo);
+        }
         correoField.setVisible(false);
         lblCorreo_personal.setVisible(true);
 
         String nuevoTelefono = telefonoField.getText().trim();
-        lblTelefono.setText(nuevoTelefono);
+        if (!nuevoTelefono.isEmpty()) {
+            lblTelefono.setText(nuevoTelefono);
+        }
         telefonoField.setVisible(false);
         lblTelefono.setVisible(true);
 
-        mostrarAlerta(Alert.AlertType.INFORMATION, "Modificacion exitosa", "Datos modificados correctamente ");
-
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Modificación exitosa", "Datos modificados correctamente");
     }
-
 
     @FXML
     protected void onIrAdmin(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin.fxml"));//para llamar a uhna ventana
-        Parent root = loader.load();
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Administrador");
-        stage.show();
-
+        cambiarVentana("Admin.fxml", event, "Administrador");
     }
 
     @FXML
     protected void onIrHorario(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Horario.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Horario");
-        stage.show();
+        cambiarVentana("Horario.fxml", event, "Horario");
     }
 
     @FXML
     protected void onIrPerfil(ActionEvent event) throws IOException {
+        cambiarVentana("Perfil.fxml", event, "Perfil");
+    }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
+    private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Perfil");
+        stage.setTitle(titulo);
         stage.show();
     }
 
@@ -100,11 +90,10 @@ public class PerfilController {
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
-        alerta.showAndWait(); //Espera que el usuario cierre la ventana antes de seguir
+        alerta.showAndWait();
     }
-    public void setCorreo(String correo) {
-        lblCorreo_institucional.setText(correo); // Muestra el correo en el label
-    }
-    String hola;// borrar
 
+    public void setCorreo(String correo) {
+        lblCorreo_institucional.setText(correo);
+    }
 }
