@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 
@@ -104,5 +105,6 @@ public class PerfilController {
     public void setCorreo(String correo) {
         lblCorreo_institucional.setText(correo); // Muestra el correo en el label
     }
+    String hola;// borrar
 
 }
