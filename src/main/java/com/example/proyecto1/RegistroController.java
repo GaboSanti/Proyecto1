@@ -1,8 +1,11 @@
 package com.example.proyecto1;
-
-//Esta librerias se ocupan para vincular los elementos del archivo .fxml con el controller
+//Estas librerías se ocupan para vincular los elementos del archivo .fxml con el controller
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class RegistroController {
 
@@ -17,32 +20,36 @@ public class RegistroController {
     @FXML private PasswordField txtPassword;
     @FXML private Button btn_registrar;
 
-
-    //Metodo inicializar()
+    //Método inicializar()
     @FXML
     private void inicializar() {
-        //Validamos que los campos esten COMPLETOS
-        //Cuando el usuario hace click , se llama al metodo validarFormulario()
+        //Cuando el usuario hace click en el botón, se llama al método validarFormulario()
         btn_registrar.setOnAction(event -> validarFormulario());
     }
-    //Metodo validar formulario
-    //Acá validamos que todos los datos esten LLENOS
+
+    //Método validarFormulario()
+    //Acá validamos que todos los datos estén LLENOS
     private void validarFormulario() {
-        //Utilizamos isEmpty para verificar si algún campo esta vacio
-        //En el caso de combobox verificamos que no sea null
         boolean algunCampoVacio = txtNombre.getText().isEmpty() || txtApellido1.getText().isEmpty() || txtApellido2.getText().isEmpty() ||
                 comboBox.getValue() == null || txtCorreo1.getText().isEmpty() || txtCorreo2.getText().isEmpty() ||
                 txtTelefono.getText().isEmpty() || txtPassword.getText().isEmpty();
+
         if (algunCampoVacio) {
-            //Si algun campo esta vacio muestra esta alerta
+            //Si algún campo está vacío, muestra esta alerta
             mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "Por favor, completa todos los campos.");
         } else {
-            //Si todos los campos estan llenos, muestra una alerta de exito
+            //Si todos los campos están llenos, muestra una alerta de éxito
             mostrarAlerta(Alert.AlertType.INFORMATION, "Registro exitoso", "¡Todos los campos han sido completados!");
+
+            // Obtener el correo institucional
+            String correoInstitucional = txtCorreo1.getText();
+
+            // Abrir la ventana del perfil y pasar el correo
+            abrirVentanaPerfil(correoInstitucional);
         }
     }
-    //Metodo mostrarAlerta()
-    //Esta es una funcion reutilizable de alertas emergentes en pantalla
+
+    //Método mostrarAlerta()
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -50,4 +57,31 @@ public class RegistroController {
         alerta.setContentText(mensaje);
         alerta.showAndWait(); //Espera que el usuario cierre la ventana antes de seguir
     }
+
+    //Método para abrir la vista del perfil y pasarle el correo
+    private void abrirVentanaPerfil(String correoInstitucional) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador del perfil
+            PerfilController perfilController = loader.getController();
+            perfilController.setCorreo(correoInstitucional); // Pasar el correo
+
+            // Mostrar la nueva ventana
+            Stage stage = new Stage();
+            stage.setTitle("Perfil de Usuario");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Cerrar la ventana actual (opcional)
+            Stage currentStage = (Stage) btn_registrar.getScene().getWindow();
+            currentStage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo abrir la ventana de perfil.");
+        }
+    }
 }
+

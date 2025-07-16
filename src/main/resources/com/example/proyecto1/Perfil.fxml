@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.PerfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../StylePerfil.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.PerfilController">
     <children>
         <Separator layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" />
         <Separator layoutX="200.0" layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
         <Separator layoutX="400.0" layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" />
         <Separator layoutX="100.0" layoutY="57.0" orientation="VERTICAL" prefHeight="200.0" />
         <Separator layoutX="100.0" layoutY="210.0" orientation="VERTICAL" prefHeight="200.0" />
-        <Button fx:id="btnPerfil" layoutX="11.0" layoutY="83.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Perfil" AnchorPane.bottomAnchor="282.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="83.0" />
-        <Button fx:id="btnHorario" layoutX="11.0" layoutY="140.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Horario" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="140.0" />
-        <Button fx:id="btnAdmin" layoutX="11.0" layoutY="200.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Admin" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="200.0" />
+        <Button fx:id="btnPerfil" layoutX="11.0" layoutY="83.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onIrPerfil" text="Perfil" AnchorPane.bottomAnchor="282.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="83.0" />
+        <Button fx:id="btnHorario" layoutX="11.0" layoutY="140.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onIrHorario" prefHeight="35.0" prefWidth="87.0" text="Horario" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="502.0" AnchorPane.topAnchor="140.0" />
+        <Button fx:id="btnAdmin" layoutX="11.0" layoutY="200.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onIrAdmin" text="Admin" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" layoutX="12.0" layoutY="257.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Salir" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="508.0" AnchorPane.topAnchor="257.0" />
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="507.0" AnchorPane.topAnchor="7.0" />
         <Label layoutX="149.0" layoutY="21.0" text="Disponibilidad de horario" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="21.0">
@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="lblFecha" alignment="CENTER" layoutX="400.0" layoutY="26.0" prefHeight="17.0" prefWidth="80.0" AnchorPane.bottomAnchor="357.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="26.0" />
         <Label fx:id="lblNombre" alignment="CENTER" layoutX="492.0" layoutY="26.0" prefHeight="17.0" prefWidth="93.0" AnchorPane.bottomAnchor="357.0" AnchorPane.leftAnchor="492.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="26.0" />
-        <Button fx:id="btnGuardar" layoutX="413.0" layoutY="358.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuardar" prefHeight="35.0" prefWidth="80.0" text="Guardar" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="358.0" />
+        <Button fx:id="btnGuardar" layoutX="413.0" layoutY="358.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuardar" prefHeight="35.0" prefWidth="87.0" text="Guardar" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="358.0" />
         <ImageView fx:id="imgSGDD" fitHeight="49.0" fitWidth="51.0" layoutX="26.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="523.0" AnchorPane.topAnchor="334.0" />
       <Separator layoutX="100.0" layoutY="343.0" prefHeight="3.0" prefWidth="499.0" />
       <Label layoutX="286.0" layoutY="68.0" prefHeight="27.0" prefWidth="62.0" text="NOMBRE:" />

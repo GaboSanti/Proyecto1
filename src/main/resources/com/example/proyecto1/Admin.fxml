@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../StylePerfil.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.AdminController">
     <children>
         <Separator layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" />
         <Separator layoutX="200.0" layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
         <Separator layoutX="400.0" layoutY="57.0" prefWidth="200.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" />
         <Separator layoutX="100.0" layoutY="57.0" orientation="VERTICAL" prefHeight="200.0" />
         <Separator layoutX="100.0" layoutY="210.0" orientation="VERTICAL" prefHeight="200.0" />
-        <Button fx:id="btnPerfil" layoutX="11.0" layoutY="83.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Perfil" AnchorPane.bottomAnchor="282.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="83.0" />
-        <Button fx:id="btnHorario" layoutX="11.0" layoutY="140.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Horario" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="140.0" />
+        <Button fx:id="btnPerfil" layoutX="11.0" layoutY="83.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onIrPerfil" text="Perfil" AnchorPane.bottomAnchor="282.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="83.0" />
+        <Button fx:id="btnHorario" layoutX="7.0" layoutY="140.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" onAction="#onIrHorario" prefHeight="35.0" prefWidth="91.0" text="Horario" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="502.0" AnchorPane.topAnchor="140.0" />
         <Button fx:id="btnAdmin" layoutX="11.0" layoutY="200.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Admin" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="509.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" layoutX="12.0" layoutY="257.0" minHeight="35.0" minWidth="80.0" mnemonicParsing="false" text="Salir" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="508.0" AnchorPane.topAnchor="257.0" />
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="507.0" AnchorPane.topAnchor="7.0" />
