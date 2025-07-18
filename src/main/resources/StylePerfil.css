@@ -1,0 +1,15 @@
+/* Estilo general solo para los botones principales */
+#btnPerfil,
+#btnExportar,
+#btnAsignar,
+#btnHorario,
+#btnAdmin,
+#btnSalir,
+#btnGuardar,
+#btnModificar {
+    -fx-background-color: #5DF563;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+}
