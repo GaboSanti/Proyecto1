@@ -22,3 +22,5 @@ public class conexionBD {
         return DriverManager.getConnection(DB_URL, props);
     }
 }
+
+//hola
