@@ -1,64 +1,167 @@
 package com.example.proyecto1;
 //Estas librerías se ocupan para vincular los elementos del archivo .fxml con el controller
+import com.example.proyecto1.Usuarios; // Importa tu clase modelo Usuario
+import com.example.proyecto1.ConexionBDRegistro; // Importa tu clase de conexión a la BD
+import javafx.collections.FXCollections; // Necesario para el ComboBox
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable; // Importa Initializable
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class RegistroController {
+import java.net.URL; // Necesario para Initializable
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ResourceBundle; // Necesario para Initializable
 
-    //Componentes del archivo .fxml
+public class RegistroController implements Initializable { // Implementa Initializable
+
+    // Componentes del archivo .fxml
     @FXML private TextField txtNombre;
-    @FXML private TextField txtApellido1;
-    @FXML private TextField txtApellido2;
-    @FXML private ComboBox<String> comboBox;
-    @FXML private TextField txtCorreo1;
-    @FXML private TextField txtCorreo2;
+    @FXML private TextField txtApellido1; // APELIDO PATERNO
+    @FXML private TextField txtApellido2; // APELIDO MATERNO
+    @FXML private ComboBox<String> comboBox; // GRADO ACADÉMICO
+    @FXML private TextField txtCorreo1; // CORREO INSTITUCIONAL
+    @FXML private TextField txtCorreo2; // CORREO PERSONAL
     @FXML private TextField txtTelefono;
     @FXML private PasswordField txtPassword;
     @FXML private Button btn_registrar;
 
-    //Método inicializar()
-    @FXML
-    private void inicializar() {
-        //Cuando el usuario hace click en el botón, se llama al método validarFormulario()
-        btn_registrar.setOnAction(event -> validarFormulario());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Inicializa el ComboBox con las opciones de grado académico
+        comboBox.setItems(FXCollections.observableArrayList("Licenciatura", "Maestría", "Doctorado"));
+
+        // Asocia el método 'handleRegistroButton' al clic del botón Registrar
+        // No uses 'inicializar' para el onAction si ya tienes un Initializable,
+        // es mejor usar un nombre descriptivo para la acción del botón.
+        btn_registrar.setOnAction(event -> handleRegistroButton());
     }
 
-    //Método validarFormulario()
-    //Acá validamos que todos los datos estén LLENOS
-    private void validarFormulario() {
-        boolean algunCampoVacio = txtNombre.getText().isEmpty() || txtApellido1.getText().isEmpty() || txtApellido2.getText().isEmpty() ||
-                comboBox.getValue() == null || txtCorreo1.getText().isEmpty() || txtCorreo2.getText().isEmpty() ||
-                txtTelefono.getText().isEmpty() || txtPassword.getText().isEmpty();
+    // Método que se llama cuando el botón "REGISTRAR" es presionado
+    @FXML // FXML method, though it's set by setOnAction now
+    private void handleRegistroButton() {
+        // 1. Validar que todos los campos obligatorios estén llenos
+        if (txtNombre.getText().isEmpty() || txtApellido1.getText().isEmpty() ||
+                comboBox.getValue() == null || txtCorreo1.getText().isEmpty() ||
+                txtTelefono.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos Incompletos", "Por favor, completa todos los campos obligatorios.");
+            return; // Detiene la ejecución si hay campos vacíos obligatorios
+        }
 
-        if (algunCampoVacio) {
-            //Si algún campo está vacío, muestra esta alerta
-            mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "Por favor, completa todos los campos.");
-        } else {
-            //Si todos los campos están llenos, muestra una alerta de éxito
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Registro exitoso", "¡Todos los campos han sido completados!");
+        // 2. Obtener los datos del formulario
+        String nombre = txtNombre.getText();
+        String apellidoPaterno = txtApellido1.getText();
+        String apellidoMaterno = txtApellido2.getText(); // Este campo puede estar vacío si es opcional
+        String gradoAcademico = comboBox.getValue();
+        String correoInstitucional = txtCorreo1.getText();
+        String correoPersonal = txtCorreo2.getText(); // Este campo puede estar vacío si es opcional
+        String telefono = txtTelefono.getText();
+        String contrasena = txtPassword.getText(); // ¡Importante: Considera hashear contraseñas!
 
-            // Obtener el correo institucional
-            String correoInstitucional = txtCorreo1.getText();
+        // 3. Crear un objeto Usuario con los datos
+        Usuarios nuevoUsuario = new Usuarios(
+                correoInstitucional,
+                nombre,
+                apellidoPaterno,
+                apellidoMaterno,
+                gradoAcademico,
+                correoPersonal,
+                telefono,
+                contrasena
+        );
 
-            // Abrir la ventana del perfil y pasar el correo
+        // 4. Intentar registrar el usuario en la base de datos
+        if (registrarUsuario(nuevoUsuario)) {
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Registro Exitoso", "¡Usuario registrado correctamente!");
+            clearFormFields(); // Limpia los campos del formulario
+
+            // Abrir la ventana del perfil y pasar el correo institucional
             abrirVentanaPerfil(correoInstitucional);
+        } else {
+            // El mensaje de error será más específico desde registrarUsuario
+            // Si el correo ya existe, registrarUsuario ya lo maneja
         }
     }
 
-    //Método mostrarAlerta()
+    /**
+     * Inserta los datos de un usuario en la tabla 'usuarios' de Oracle.
+     *
+     * @param usuario El objeto Usuario a registrar.
+     * @return true si el usuario se registró exitosamente, false en caso contrario.
+     */
+    private boolean registrarUsuario(Usuarios usuario) {
+        // Consulta SQL para insertar datos en la tabla 'usuarios' de Oracle.
+        // Asume que 'id' es una columna IDENTITY generada automáticamente.
+        String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = ConexionBDRegistro.getConnection(); // Obtiene la conexión a la BD
+            pstmt = conn.prepareStatement(sql); // Prepara la sentencia SQL
+
+            // Asigna los valores del objeto Usuario a los parámetros de la consulta SQL
+            pstmt.setString(1, usuario.getCorreoInstitucional());
+            pstmt.setString(2, usuario.getNombre());
+            pstmt.setString(3, usuario.getApellidoPaterno());
+            pstmt.setString(4, usuario.getApellidoMaterno());
+            pstmt.setString(5, usuario.getGradoAcademico());
+            pstmt.setString(6, usuario.getCorreoPersonal());
+            pstmt.setString(7, usuario.getNumeroTelefono());
+            pstmt.setString(8, usuario.getContrasena());
+
+            int affectedRows = pstmt.executeUpdate(); // Ejecuta la inserción
+            return affectedRows > 0; // Retorna true si se insertó al menos una fila
+
+        } catch (SQLException e) {
+            System.err.println("Error al registrar el usuario en la base de datos: " + e.getMessage());
+            // Código de error ORA-00001 es para violación de restricción única en Oracle
+            if (e.getErrorCode() == 1) { // Oracle SQL error code for unique constraint violation (ORA-00001)
+                mostrarAlerta(Alert.AlertType.ERROR, "Registro Fallido", "El correo institucional ya está registrado. Por favor, usa otro.");
+            } else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error de Base de Datos", "Ocurrió un error al intentar registrar el usuario. Inténtalo de nuevo.");
+            }
+            return false; // Retorna false si ocurre algún error
+        } finally {
+            // Asegura que los recursos de la base de datos se cierren siempre
+            ConexionBDRegistro.closeConnection(conn);
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.err.println("Error al cerrar PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    // Muestra una ventana de alerta al usuario.
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
-        alerta.showAndWait(); //Espera que el usuario cierre la ventana antes de seguir
+        alerta.showAndWait();
     }
 
-    //Método para abrir la vista del perfil y pasarle el correo
+    // Limpia todos los campos del formulario de registro.
+    private void clearFormFields() {
+        txtNombre.clear();
+        txtApellido1.clear();
+        txtApellido2.clear();
+        comboBox.getSelectionModel().clearSelection();
+        txtCorreo1.clear();
+        txtCorreo2.clear();
+        txtTelefono.clear();
+        txtPassword.clear();
+    }
+
+    // Método para abrir la vista del perfil y pasarle el correo
     private void abrirVentanaPerfil(String correoInstitucional) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
@@ -66,7 +169,8 @@ public class RegistroController {
 
             // Obtener el controlador del perfil
             PerfilController perfilController = loader.getController();
-            perfilController.setCorreo(correoInstitucional); // Pasar el correo
+            // Asumiendo que PerfilController tiene un método setCorreo para recibir el dato
+            perfilController.setCorreo(correoInstitucional);
 
             // Mostrar la nueva ventana
             Stage stage = new Stage();
@@ -74,13 +178,13 @@ public class RegistroController {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Cerrar la ventana actual (opcional)
+            // Cerrar la ventana actual (opcional, si quieres que la ventana de registro desaparezca)
             Stage currentStage = (Stage) btn_registrar.getScene().getWindow();
             currentStage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo abrir la ventana de perfil.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de Navegación", "No se pudo abrir la ventana de perfil.");
         }
     }
 }
