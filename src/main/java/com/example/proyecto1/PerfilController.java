@@ -25,6 +25,10 @@ public class PerfilController {
     @FXML private Button btnModificar_telefono;
     @FXML private TextField correoField;
     @FXML private TextField telefonoField;
+    @FXML private Label lblApellido_PaternoUsuario;
+    @FXML private Label lblApellido_MaternoUsuario;
+
+
 
     @FXML
     public void onModificarCorreo() {
@@ -74,6 +78,10 @@ public class PerfilController {
     @FXML
     protected void onIrPerfil(ActionEvent event) throws IOException {
         cambiarVentana("Perfil.fxml", event, "Perfil");
+    }
+    @FXML
+    protected void onSalir(ActionEvent event) throws IOException {
+        cambiarVentana("hello-view.fxml", event, "Iniciar Sesion");
     }
 
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {

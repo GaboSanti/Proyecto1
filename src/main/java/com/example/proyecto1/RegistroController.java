@@ -42,7 +42,7 @@ public class RegistroController implements Initializable { // Implementa Initial
     }
 
     // Método que se llama cuando el botón "REGISTRAR" es presionado
-    @FXML // FXML method, though it's set by setOnAction now
+    @FXML
     private void handleRegistroButton() {
         // 1. Validar que todos los campos obligatorios estén llenos
         if (txtNombre.getText().isEmpty() || txtApellido1.getText().isEmpty() ||
