@@ -96,7 +96,7 @@ public class RegistroController implements Initializable { // Implementa Initial
     private boolean registrarUsuario(Usuarios usuario) {
         // Consulta SQL para insertar datos en la tabla 'usuarios' de Oracle.
         // Asume que 'id' es una columna IDENTITY generada automáticamente.
-        String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -164,7 +164,7 @@ public class RegistroController implements Initializable { // Implementa Initial
     // Método para abrir la vista del perfil y pasarle el correo
     private void abrirVentanaPerfil(String correoInstitucional) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Parent root = loader.load();
 
             // Obtener el controlador del perfil
@@ -174,7 +174,7 @@ public class RegistroController implements Initializable { // Implementa Initial
 
             // Mostrar la nueva ventana
             Stage stage = new Stage();
-            stage.setTitle("Perfil de Usuario");
+            stage.setTitle("Inicio de Sesión");
             stage.setScene(new Scene(root));
             stage.show();
 

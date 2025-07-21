@@ -9,11 +9,11 @@ public class Usuarios {
     private String gradoAcademico;
     private String correoPersonal;
     private String numeroTelefono;
-    private String contrasena;
+    private String contraseña;
 
     // Constructor para crear un nuevo usuario (sin ID, ya que es auto-generado en BD)
     public Usuarios(String correoInstitucional, String nombre, String apellidoPaterno, String apellidoMaterno,
-                    String gradoAcademico, String correoPersonal, String numeroTelefono, String contrasena) {
+                    String gradoAcademico, String correoPersonal, String numeroTelefono, String contraseña) {
         this.correoInstitucional = correoInstitucional;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -21,7 +21,7 @@ public class Usuarios {
         this.gradoAcademico = gradoAcademico;
         this.correoPersonal = correoPersonal;
         this.numeroTelefono = numeroTelefono;
-        this.contrasena = contrasena;
+        this.contraseña = contraseña;
     }
 
 
@@ -33,7 +33,7 @@ public class Usuarios {
     public String getGradoAcademico() { return gradoAcademico; }
     public String getCorreoPersonal() { return correoPersonal; }
     public String getNumeroTelefono() { return numeroTelefono; }
-    public String getContrasena() { return contrasena; }
+    public String getContrasena() { return contraseña; }
 
     // Setters (solo si los necesitas, ej. para actualizar propiedades)
     public void setCorreoInstitucional(String correoInstitucional) { this.correoInstitucional = correoInstitucional; }
@@ -43,6 +43,6 @@ public class Usuarios {
     public void setGradoAcademico(String gradoAcademico) { this.gradoAcademico = gradoAcademico; }
     public void setCorreoPersonal(String correoPersonal) { this.correoPersonal = correoPersonal; }
     public void setNumeroTelefono(String numeroTelefono) { this.numeroTelefono = numeroTelefono; }
-    public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+    public void setContrasena(String contrasena) { this.contraseña = contraseña; }
 
 }
