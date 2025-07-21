@@ -13,3 +13,22 @@
     -fx-background-radius: 8;
     -fx-padding: 10 20 10 20;
 }
+.root { /* La pseudo-clase .root se aplica al nodo raíz de la escena */
+    -fx-background-color: white;
+}
+.label-titulo-gris {
+    -fx-text-fill: #ffffff;          /* ¡CAMBIO! Color de texto blanco para contraste */
+    -fx-background-color: #9b9b9b; /* ¡CAMBIO! Fondo gris oscuro */
+    -fx-border-color: #707070;     /* Borde gris más grueso */
+    -fx-border-width: 2px;         /* Grosor del borde */
+    -fx-border-radius: 10px;        /* ¡CAMBIO! Bordes más redondeados para el borde */
+    -fx-background-radius: 10px;    /* ¡CAMBIO! Bordes más redondeados para el fondo */
+    -fx-padding: 5px;              /* Espaciado interno para que el texto no toque el borde */
+}
+
+.label-informacion-gris {
+    -fx-text-fill: #A0A0A0;         /* Tono de gris más claro para el texto */
+    -fx-background-color: #F0F0F0;  /* ¡NUEVO! Fondo gris muy claro */
+    -fx-padding: 3px 5px;           /* Espaciado interno para el fondo, opcional */
+    -fx-border-radius: 10px;        /* ¡CAMBIO! Bordes más redondeados para el borde */
+    -fx-background-radius: 10px;    /* ¡CAMBIO! Bordes más redondeados para el fondo */}
