@@ -1,0 +1,58 @@
+.root {
+    -fx-background-color: white;
+}
+
+VBox {
+    -fx-background-color: #42a5f5;
+    -fx-background-radius: 15;
+    -fx-padding: 25;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.3, 0, 4);
+    -fx-alignment: center;
+}
+
+/* Título */
+.title {
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 1, 0.2, 0, 1);
+}
+
+/* Campos */
+.text-field, .password-field, .combo-box {
+    -fx-background-color: #f5f5f5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-pref-height: 35;
+    -fx-pref-width: 320;
+    -fx-font-size: 14px;
+    -fx-padding: 0 10 0 10;
+}
+
+/* HBox (para apellidos) */
+HBox {
+    -fx-alignment: center;
+}
+
+HBox .text-field {
+    -fx-pref-width: 155;
+}
+
+/* Botón */
+.register-button {
+    -fx-background-color: linear-gradient(to right, #43a047, #66bb6a);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-pref-height: 35;
+    -fx-pref-width: 140;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.register-button:hover {
+    -fx-background-color: linear-gradient(to right, #388e3c, #43a047);
+}

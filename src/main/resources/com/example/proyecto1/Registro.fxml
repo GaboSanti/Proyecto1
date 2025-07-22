@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="832.0" maxWidth="1280.0" minHeight="832.0" minWidth="1280.0" prefHeight="832.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.RegistroController">
+<AnchorPane maxHeight="832.0" maxWidth="1280.0" minHeight="832.0" minWidth="1280.0" prefHeight="832.0" prefWidth="1280.0" stylesheets="@../../../StyleRegistro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.RegistroController">
     <VBox fx:id="formulario" alignment="CENTER" layoutX="450.0" layoutY="90.0" prefHeight="466.0" prefWidth="388.0" spacing="12" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="90.0">
 
         <Label styleClass="title" text="REGISTRO" />
