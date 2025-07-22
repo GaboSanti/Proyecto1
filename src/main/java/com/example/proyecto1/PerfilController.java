@@ -7,8 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import javafx.fxml.Initializable;
 import java.io.IOException;
+
+import java.time.LocalDate; // ¡Importa LocalDate!
+import java.time.format.DateTimeFormatter;
 
 public class PerfilController {
 
@@ -17,6 +20,7 @@ public class PerfilController {
     @FXML private Button btnSalir;
     @FXML private Button btnAdmin;
     @FXML private Label lblNombreUsuario;
+    @FXML private Label lblFecha;
     @FXML private Label lblCorreo_institucional;
     @FXML private Label lblCorreo_personal;
     @FXML private Label lblTelefono;
@@ -27,6 +31,8 @@ public class PerfilController {
     @FXML private TextField telefonoField;
     @FXML private Label lblApellido_PaternoUsuario;
     @FXML private Label lblApellido_MaternoUsuario;
+
+
 
 
 
