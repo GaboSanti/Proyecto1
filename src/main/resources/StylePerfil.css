@@ -31,4 +31,5 @@
     -fx-background-color: #F0F0F0;  /* ¡NUEVO! Fondo gris muy claro */
     -fx-padding: 3px 5px;           /* Espaciado interno para el fondo, opcional */
     -fx-border-radius: 10px;        /* ¡CAMBIO! Bordes más redondeados para el borde */
-    -fx-background-radius: 10px;    /* ¡CAMBIO! Bordes más redondeados para el fondo */}
+    -fx-background-radius: 10px;    /* ¡CAMBIO! Bordes más redondeados para el fondo */
+}

@@ -31,6 +31,6 @@
         <TextField fx:id="txtCorreo2" promptText="CORREO PERSONAL" />
         <TextField fx:id="txtTelefono" promptText="TELÉFONO" />
         <PasswordField fx:id="txtPassword" promptText="CONTRASEÑA" />
-      <Button fx:id="btn_registrar" mnemonicParsing="false" onAction="#handleRegistroButton" text="REGISTRAR" />
+      <Button fx:id="btn_registrar" mnemonicParsing="false" onAction="#handleRegistroButton" styleClass="register-button" text="REGISTRAR" />
     </VBox>
 </AnchorPane>
