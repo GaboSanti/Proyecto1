@@ -1,7 +1,7 @@
 package com.example.proyecto1;
 
 public class Usuarios {
-
+//atributos que contendra cada usuario
     private String correoInstitucional;
     private String nombre;
     private String apellidoPaterno;
@@ -11,7 +11,7 @@ public class Usuarios {
     private String numeroTelefono;
     private String contraseña;
 
-    // Constructor para crear un nuevo usuario (sin ID, ya que es auto-generado en BD)
+    // Constructor para crear un nuevo usuario
     public Usuarios(String correoInstitucional, String nombre, String apellidoPaterno, String apellidoMaterno,
                     String gradoAcademico, String correoPersonal, String numeroTelefono, String contraseña) {
         this.correoInstitucional = correoInstitucional;
@@ -25,7 +25,7 @@ public class Usuarios {
     }
 
 
-    // Getters
+    // Getters de cada atributo
     public String getCorreoInstitucional() { return correoInstitucional; }
     public String getNombre() { return nombre; }
     public String getApellidoPaterno() { return apellidoPaterno; }
@@ -35,7 +35,7 @@ public class Usuarios {
     public String getNumeroTelefono() { return numeroTelefono; }
     public String getContrasena() { return contraseña; }
 
-    // Setters (solo si los necesitas, ej. para actualizar propiedades)
+    // Setters de cada atributo
     public void setCorreoInstitucional(String correoInstitucional) { this.correoInstitucional = correoInstitucional; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setApellidoPaterno(String apellidoPaterno) { this.apellidoPaterno = apellidoPaterno; }

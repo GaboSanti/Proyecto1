@@ -1,23 +1,21 @@
 package com.example.proyecto1;
-//Estas librerías se ocupan para vincular los elementos del archivo .fxml con el controller
-import com.example.proyecto1.Usuarios; // Importa tu clase modelo Usuario
-import com.example.proyecto1.ConexionBDRegistro; // Importa tu clase de conexión a la BD
+
 import javafx.collections.FXCollections; // Necesario para el ComboBox
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable; // Importa Initializable
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.net.URL; // Necesario para Initializable
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ResourceBundle; // Necesario para Initializable
+import java.util.ResourceBundle;
 
-public class RegistroController implements Initializable { // Implementa Initializable
+public class RegistroController implements Initializable {
 
     // Componentes del archivo .fxml
     @FXML private TextField txtNombre;
@@ -36,8 +34,6 @@ public class RegistroController implements Initializable { // Implementa Initial
         comboBox.setItems(FXCollections.observableArrayList("Licenciatura", "Maestría", "Doctorado"));
 
         // Asocia el método 'handleRegistroButton' al clic del botón Registrar
-        // No uses 'inicializar' para el onAction si ya tienes un Initializable,
-        // es mejor usar un nombre descriptivo para la acción del botón.
         btn_registrar.setOnAction(event -> handleRegistroButton());
     }
 
@@ -55,12 +51,12 @@ public class RegistroController implements Initializable { // Implementa Initial
         // 2. Obtener los datos del formulario
         String nombre = txtNombre.getText();
         String apellidoPaterno = txtApellido1.getText();
-        String apellidoMaterno = txtApellido2.getText(); // Este campo puede estar vacío si es opcional
+        String apellidoMaterno = txtApellido2.getText();
         String gradoAcademico = comboBox.getValue();
         String correoInstitucional = txtCorreo1.getText();
-        String correoPersonal = txtCorreo2.getText(); // Este campo puede estar vacío si es opcional
+        String correoPersonal = txtCorreo2.getText();
         String telefono = txtTelefono.getText();
-        String contrasena = txtPassword.getText(); // ¡Importante: Considera hashear contraseñas!
+        String contrasena = txtPassword.getText();
 
         // 3. Crear un objeto Usuario con los datos
         Usuarios nuevoUsuario = new Usuarios(
@@ -95,7 +91,7 @@ public class RegistroController implements Initializable { // Implementa Initial
      */
     private boolean registrarUsuario(Usuarios usuario) {
         // Consulta SQL para insertar datos en la tabla 'usuarios' de Oracle.
-        // Asume que 'id' es una columna IDENTITY generada automáticamente.
+
         String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
@@ -120,8 +116,7 @@ public class RegistroController implements Initializable { // Implementa Initial
 
         } catch (SQLException e) {
             System.err.println("Error al registrar el usuario en la base de datos: " + e.getMessage());
-            // Código de error ORA-00001 es para violación de restricción única en Oracle
-            if (e.getErrorCode() == 1) { // Oracle SQL error code for unique constraint violation (ORA-00001)
+            if (e.getErrorCode() == 1) {
                 mostrarAlerta(Alert.AlertType.ERROR, "Registro Fallido", "El correo institucional ya está registrado. Por favor, usa otro.");
             } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error de Base de Datos", "Ocurrió un error al intentar registrar el usuario. Inténtalo de nuevo.");
