@@ -16,9 +16,9 @@
         <Separator orientation="VERTICAL" prefHeight="490.0" prefWidth="6.0" stylesheets="@../../../StyleHorario.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="210.0" />
 
 
-        <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
-        <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
-        <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
+        <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" onAction="#onIrPerfil" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
+        <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" onAction="#onIrHorario" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
+        <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" onAction="#onIrAdmin" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
@@ -46,7 +46,7 @@
         <ImageView fx:id="imgSGDD" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="26.0" />
 
         <!-- Línea bajo título -->
-        <Label alignment="TOP_CENTER" layoutX="262.0" layoutY="60.0" prefHeight="21.0" prefWidth="604.0" text="Septiembre - Diciembre Periodo asignado: 10 de Julio del 2025 - 20 de Julio del 2025" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="60.0" />
+        <Label fx:id="lblPeriodo" alignment="CENTER" layoutX="262.0" layoutY="60.0" prefHeight="21.0" prefWidth="604.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="60.0" />
 
 
         <Label layoutX="262.0" layoutY="132.0" styleClass="label-titulo-gris" text="NOMBRE(S)" />

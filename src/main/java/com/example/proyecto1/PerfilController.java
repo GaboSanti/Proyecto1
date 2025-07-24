@@ -33,6 +33,20 @@ public class PerfilController {
     @FXML private Label lblApellido_MaternoUsuario;
 
 
+    @FXML
+    public void initialize() {//para obtener la fecha de la computadora y mostrarla en un label
+        // Obtener la fecha actual de la computadora
+        LocalDate fechaActual = LocalDate.now();
+
+        // Definir el formato deseado para la fecha
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
+
+        // Formatear la fecha actual a String
+        String fechaFormateada = fechaActual.format(formatter);
+
+        // Establecer el texto del Label con la fecha actual
+        lblFecha.setText(fechaFormateada);
+    }
 
 
 
