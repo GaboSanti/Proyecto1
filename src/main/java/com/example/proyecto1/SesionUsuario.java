@@ -15,3 +15,4 @@ public class SesionUsuario {
         correoInstitucional = null;
     }
 }
+ //
