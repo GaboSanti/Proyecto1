@@ -28,6 +28,7 @@ public class HelloController {
         if (validarFormulario(correoIngresado, passwordIngresado)) {
             if (compararDatos(correoIngresado, passwordIngresado)) {
                 cambiarVentana("Horario.fxml", event, "Horario");
+                SesionUsuario.setCorreoInstitucional(correoIngresado);
             }else {
                 mostrarAlerta("Error", "Datos incorrectas",
                         "El correo o contraseña son incorrectos.");
