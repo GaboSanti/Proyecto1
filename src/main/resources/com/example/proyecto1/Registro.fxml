@@ -4,8 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.lang.String?>
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.registro.RegistroController">
+            fx:controller="com.example.proyecto1.RegistroController">
     <VBox alignment="CENTER" layoutX="450.0" layoutY="41.0" prefHeight="600.0" prefWidth="450.0" spacing="12" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="41.0">
 
         <Label styleClass="title" text="REGISTRO" />
