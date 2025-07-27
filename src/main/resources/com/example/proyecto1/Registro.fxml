@@ -35,6 +35,9 @@
             <TextField fx:id="txtPasswordVisible" promptText="CONTRASEÑA" prefWidth="250" visible="false" managed="false" />
             <Button fx:id="btnTogglePassword" text="👁" />
         </HBox>
+
+        <Label fx:id="lblPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
+
       <Button fx:id="btn_registrar" mnemonicParsing="false" onAction="#handleRegistroButton" styleClass="register-button" text="REGISTRAR" />
     </VBox>
 </AnchorPane>
