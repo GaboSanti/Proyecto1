@@ -38,6 +38,7 @@
 
         <Label fx:id="lblPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
         <Label fx:id="lblConfirmarPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
+        <PasswordField fx:id="txtConfirmarPassword" promptText="CONFIRMAR CONTRASEÑA" />
 
       <Button fx:id="btn_registrar" mnemonicParsing="false" onAction="#handleRegistroButton" styleClass="register-button" text="REGISTRAR" />
     </VBox>
