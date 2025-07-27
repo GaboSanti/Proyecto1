@@ -30,7 +30,11 @@
         <TextField fx:id="txtCorreo1" promptText="CORREO INSTITUCIONAL" />
         <TextField fx:id="txtCorreo2" promptText="CORREO PERSONAL" />
         <TextField fx:id="txtTelefono" promptText="TELÉFONO" />
-        <PasswordField fx:id="txtPassword" promptText="CONTRASEÑA" />
+        <HBox spacing="5">
+            <PasswordField fx:id="txtPassword" promptText="CONTRASEÑA" prefWidth="250" />
+            <TextField fx:id="txtPasswordVisible" promptText="CONTRASEÑA" prefWidth="250" visible="false" managed="false" />
+            <Button fx:id="btnTogglePassword" text="👁" />
+        </HBox>
       <Button fx:id="btn_registrar" mnemonicParsing="false" onAction="#handleRegistroButton" styleClass="register-button" text="REGISTRAR" />
     </VBox>
 </AnchorPane>
