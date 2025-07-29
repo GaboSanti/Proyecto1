@@ -16,10 +16,10 @@
         <Separator orientation="VERTICAL" prefHeight="490.0" prefWidth="6.0" stylesheets="@../../../StyleHorario.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="210.0" />
 
 
-        <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
-        <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
-        <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
-        <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
+        <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" onAction="#onPerfil" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
+        <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" onAction="#onHorario" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
+        <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" onAction="#onAdmin" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
+        <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
 
