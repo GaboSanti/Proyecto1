@@ -258,7 +258,7 @@
         </GridPane>
 
         <!-- Botones de acción -->
-        <Button fx:id="btnGuardar" layoutX="501.0" layoutY="645.0" minHeight="35.0" minWidth="80.0" text="Guardar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="501.0" />
+        <Button fx:id="btnGuardar" layoutX="501.0" layoutY="645.0" minHeight="35.0" minWidth="80.0" onAction="#guardarHorario" text="Guardar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="501.0" />
         <Button fx:id="btnModificar" layoutX="866.0" layoutY="645.0" minHeight="35.0" minWidth="80.0" text="Modificar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="866.0" />
 
         <!-- Imagen SGDD -->
