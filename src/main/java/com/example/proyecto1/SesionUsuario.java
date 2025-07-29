@@ -1,5 +1,5 @@
 package com.example.proyecto1;
-
+//se utiliza para almacenar el correoInstitucional despues de cada inicio de sesión
 public class SesionUsuario {
     private static String correoInstitucional;
 
@@ -15,4 +15,3 @@ public class SesionUsuario {
         correoInstitucional = null;
     }
 }
- //
