@@ -1,10 +1,7 @@
 package com.example.proyecto1.util;
 
 public class HorarioUtils {
-    /**
-     * Convierte siglas de día a ID (como los que están en la base de datos).
-     * Ejemplo: "LU" → 1
-     */
+
     public static int diaToId(String sigla) {
         return switch (sigla) {
             case "LU" -> 1;
@@ -12,14 +9,12 @@ public class HorarioUtils {
             case "MI" -> 3;
             case "JU" -> 4;
             case "VI" -> 5;
-            default -> 0; // 0 si no encuentra coincidencia
+            case "SA" -> 6;
+            default -> 0;
         };
     }
 
-    /**
-     * Convierte ID de día a sigla.
-     * Ejemplo: 1 → "LU"
-     */
+
     public static String idToDiaSigla(int id) {
         return switch (id) {
             case 1 -> "LU";
@@ -27,14 +22,12 @@ public class HorarioUtils {
             case 3 -> "MI";
             case 4 -> "JU";
             case 5 -> "VI";
+            case 6 -> "SA";
             default -> "";
         };
     }
 
-    /**
-     * Convierte hora (entero) a ID de intervalo.
-     * Ejemplo: 7 → 1, 13 → 7
-     */
+
     public static int horaToIntervaloId(int hora) {
         return switch (hora) {
             case 7 -> 1;
@@ -56,10 +49,7 @@ public class HorarioUtils {
         };
     }
 
-    /**
-     * Convierte ID de intervalo a hora (inicio del intervalo).
-     * Ejemplo: 1 → 7, 7 → 13
-     */
+
     public static int intervaloIdToHora(int idIntervalo) {
         return switch (idIntervalo) {
             case 1 -> 7;
@@ -82,4 +72,3 @@ public class HorarioUtils {
     }
 }
 
-//hola
