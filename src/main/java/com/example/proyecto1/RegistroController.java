@@ -108,7 +108,7 @@ public class RegistroController implements Initializable {
     }
 
     private boolean registrarUsuario(Usuarios usuario) {
-        String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (correo_institucional, nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDRegistro.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usuario.getCorreoInstitucional());
             pstmt.setString(2, usuario.getNombre());
@@ -126,6 +126,7 @@ public class RegistroController implements Initializable {
                 mostrarAlerta(Alert.AlertType.ERROR, "Correo duplicado", "Ese correo institucional ya está registrado.");
             } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error de base de datos", "Ocurrió un error al registrar.");
+                System.out.println("error "+e);
             }
             return false;
         }
