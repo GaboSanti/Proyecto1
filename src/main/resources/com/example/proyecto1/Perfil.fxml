@@ -50,12 +50,12 @@
 
 
         <Label layoutX="262.0" layoutY="132.0" styleClass="label-titulo-gris" text="NOMBRE(S)" />
-        <Label fx:id="lblNombreUsuario" alignment="CENTER" layoutX="218.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="ISABEL ITZEL " />
+        <Label fx:id="lblNombreUsuario" alignment="CENTER" layoutX="512.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="ISABEL ITZEL " />
         <Label layoutX="558.0" layoutY="260.0" styleClass="label-titulo-gris" text="CORREO:" />
-        <Label fx:id="lblCorreo_institucional" alignment="CENTER" layoutX="486.0" layoutY="314.0" prefHeight="23.0" prefWidth="210.0" styleClass="label-informacion-gris" text="Label" />
+        <Label fx:id="lblCorreo_institucional" alignment="CENTER" layoutX="219.0" layoutY="186.0" prefHeight="21.0" prefWidth="183.0" styleClass="label-informacion-gris" text="Label" />
 
         <!-- Correo personal -->
-        <Label fx:id="lblCorreo_personal" alignment="CENTER" layoutX="484.0" layoutY="365.0" prefHeight="25.0" prefWidth="210.0" styleClass="label-informacion-gris" text="correo@ejemplo.com" />
+        <Label fx:id="lblCorreo_personal" alignment="CENTER" layoutX="484.0" layoutY="464.0" prefHeight="26.0" prefWidth="210.0" styleClass="label-informacion-gris" text="correo@ejemplo.com" />
         <TextField fx:id="correoField" layoutX="482.0" layoutY="359.0" prefHeight="38.0" prefWidth="210.0" visible="false" />
         <Button fx:id="btnModificar_correo" layoutX="692.0" layoutY="364.0" onAction="#onModificarCorreo">
             <graphic>
@@ -69,7 +69,7 @@
 
         <!-- Teléfono -->
         <Label layoutX="555.0" layoutY="405.0" styleClass="label-titulo-gris" text="TELEFONO:" />
-        <Label fx:id="lblTelefono" alignment="CENTER" layoutX="529.0" layoutY="461.0" prefHeight="25.0" prefWidth="126.0" styleClass="label-informacion-gris" text="1234567890" />
+        <Label fx:id="lblTelefono" alignment="CENTER" layoutX="505.0" layoutY="573.0" prefHeight="26.0" prefWidth="165.0" styleClass="label-informacion-gris" text="1234567890" />
         <TextField fx:id="telefonoField" layoutX="509.0" layoutY="456.0" prefHeight="37.0" prefWidth="165.0" visible="false" />
         <Button fx:id="btnModificar_telefono" layoutX="692.0" layoutY="461.0" onAction="#onModificarTelefono">
             <graphic>
@@ -82,14 +82,14 @@
         </Button>
 
         <Label layoutX="528.0" layoutY="518.0" styleClass="label-titulo-gris" text="GRADO ACADEMICO:" />
-        <Label alignment="CENTER" layoutX="509.0" layoutY="567.0" prefHeight="23.0" prefWidth="183.0" styleClass="label-informacion-gris" text="lABEL" />
+        <Label fx:id ="lblGradoAcademico" alignment="CENTER" layoutX="482.0" layoutY="365.0" prefHeight="26.0" prefWidth="210.0" styleClass="label-informacion-gris" text="lABEL" />
 
         <Label layoutX="530.0" layoutY="132.0" styleClass="label-titulo-gris" text="APELLIDO PATERNO" />
-      <Label fx:id="lblApellido_PaternoUsuario" alignment="CENTER" layoutX="509.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="Label" />
+      <Label fx:id="lblApellido_PaternoUsuario" alignment="CENTER" layoutX="842.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="Label" />
       <Label text="Label" />
       <Label layoutX="858.0" layoutY="132.0" styleClass="label-titulo-gris" text="APELLIDO MATERNO" />
       <Label text="Label" />
-      <Label fx:id="lblApellido_MaternoUsuario" alignment="CENTER" layoutX="839.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="Label" />
+      <Label fx:id="lblApellido_MaternoUsuario" alignment="CENTER" layoutX="485.0" layoutY="323.0" prefHeight="25.0" prefWidth="210.0" styleClass="label-informacion-gris" text="Label" />
 
     </children>
 </AnchorPane>
