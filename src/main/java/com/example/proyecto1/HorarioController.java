@@ -1,12 +1,17 @@
 package com.example.proyecto1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +19,7 @@ import java.util.LinkedHashMap;
 
 import com.example.proyecto1.util.HorarioUtils;
 import com.example.proyecto1.model.HorarioUsuariosPorDia;
+import javafx.stage.Stage;
 
 public class HorarioController {
 
@@ -34,6 +40,9 @@ public class HorarioController {
 
     private final Map<String, List<Integer>> horarioSeleccionado = new LinkedHashMap<>();
 
+    // MODIFICACIÓN: Flag para saber si el horario ya está guardado y, por tanto, bloquear la edición.
+    private boolean horarioBloqueado = false;
+
     @FXML
     public void initialize() {
 
@@ -42,6 +51,9 @@ public class HorarioController {
                 boton.setStyle("-fx-background-color: #FF6666; -fx-border-color: black; -fx-border-width: 1px;");
 
                 boton.setOnAction(e -> {
+                    // MODIFICACIÓN: Si está bloqueado, ignorar cualquier intento de cambio.
+                    if (horarioBloqueado) return;
+
                     String currentStyle = boton.getStyle();
                     if (currentStyle.contains("#FF6666")) {
                         boton.setStyle("-fx-background-color: #5DF563; -fx-border-color: black; -fx-border-width: 1px;");
@@ -85,7 +97,6 @@ public class HorarioController {
 
                             boton.setStyle("-fx-background-color: #5DF563; -fx-border-color: black; -fx-border-width: 1px;");
 
-
                             horarioSeleccionado.putIfAbsent(dia, new ArrayList<>());
                             if (!horarioSeleccionado.get(dia).contains(row)) {
                                 horarioSeleccionado.get(dia).add(row);
@@ -96,10 +107,20 @@ public class HorarioController {
             }
         }
 
+        // MODIFICACIÓN: Como ya hay horario en BD, bloquear edición y el botón Guardar.
+        horarioBloqueado = true;
+        bloquearBoton(true);
     }
 
     @FXML
     private void guardarHorario() {
+
+        // MODIFICACIÓN: Si ya está bloqueado (ya tiene horario guardado), no permitir volver a guardar.
+        if (horarioBloqueado) {
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Horario ya registrado",
+                    "Ya tienes un horario guardado. Para modificarlo, contacta al administrador (o habilita edición si implementas esa función).");
+            return;
+        }
 
         for (Node node : gridPaneHorario.getChildren()) {
             if (node instanceof Button boton) {
@@ -132,6 +153,11 @@ public class HorarioController {
 
         if (resultado) {
             mostrarAlerta(Alert.AlertType.INFORMATION, "Guardado", "¡Horario registrado correctamente!");
+
+            // MODIFICACIÓN: Tras guardar por primera vez, bloquear edición y el botón Guardar.
+            horarioBloqueado = true;
+            bloquearBoton(true);
+
         } else {
             mostrarAlerta(Alert.AlertType.INFORMATION, "Error", "No se pudo guardar el horario");
         }
@@ -145,6 +171,46 @@ public class HorarioController {
         alerta.showAndWait();
     }
 
+
+    private void bloquearBoton(boolean bloquear) {
+        for (Node node : gridPaneHorario.getChildren()) {
+            if (node instanceof Button boton) {
+                boton.setDisable(bloquear);
+            }
+        }
+        if (btnGuardar != null) {
+            btnGuardar.setDisable(bloquear);
+        }
+    }
+
+    @FXML
+    protected void onPerfil(ActionEvent event) throws IOException {
+        cambiarVentana("Perfil.fxml", event, "Perfil");
+    }
+
+    @FXML
+    protected void onAdmin(ActionEvent event) throws IOException {
+        cambiarVentana("Admin.fxml", event, "Administrador");
+    }
+
+    @FXML
+    protected void onSalir(ActionEvent event) throws IOException {
+        cambiarVentana("hello-view.fxml", event, "Iniciar Sesion");
+    }
+
+    @FXML
+    protected void onHorario(ActionEvent event) throws IOException {
+        cambiarVentana("Horario.fxml", event, "Horario");
+    }
+
+    private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle(titulo);
+        stage.show();
+    }
+
+
 }
-
-
