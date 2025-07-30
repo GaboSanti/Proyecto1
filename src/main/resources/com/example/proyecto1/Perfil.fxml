@@ -8,13 +8,11 @@
 <AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1200.0" styleClass="root" stylesheets="@../../../StylePerfil.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.PerfilController">
     <children>
 
-
         <Separator AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="57.0" />
         <Separator layoutX="101.0" prefHeight="3.0" prefWidth="1099.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0" />
         <Separator prefHeight="3.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
         <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="57.0" />
         <Separator orientation="VERTICAL" prefHeight="490.0" prefWidth="6.0" stylesheets="@../../../StyleHorario.css" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="210.0" />
-
 
         <Button fx:id="btnPerfil" minHeight="35.0" minWidth="80.0" onAction="#onIrPerfil" text="Perfil" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="83.0" />
         <Button fx:id="btnHorario" minHeight="35.0" minWidth="80.0" onAction="#onIrHorario" text="Horario" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="140.0" />
@@ -22,44 +20,67 @@
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
-
         <Label layoutX="495.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="17.0">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
         </Label>
 
-        <!-- Nombre y fecha -->
-        <Label fx:id="lblFecha" alignment="CENTER" layoutX="921.0" layoutY="23.0" prefHeight="17.0" prefWidth="105.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="23.0">
+        <Label fx:id="lblFecha" alignment="CENTER" layoutX="921.0" layoutY="23.0" prefHeight="25.0" prefWidth="138.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="23.0">
             <font>
-                <Font size="16.0" />
-            </font></Label>
-        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="187.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
             <font>
-                <Font size="16.0" />
-            </font></Label>
+                <Font size="14.0" />
+            </font>
+        </Label>
 
-        <!-- Botones de acción -->
-        <Button fx:id="btnGuardar" layoutX="794.0" layoutY="632.0" minHeight="35.0" minWidth="80.0" text="Guardar" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="794.0" />
+        <Button fx:id="btnGuardar" layoutX="794.0" layoutY="632.0" minHeight="35.0" minWidth="80.0" onAction="#onGuardar" text="Guardar" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="794.0" />
 
-        <!-- Imagen SGDD -->
         <ImageView fx:id="imgSGDD" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="26.0" />
 
-        <!-- Línea bajo título -->
         <Label fx:id="lblPeriodo" alignment="CENTER" layoutX="262.0" layoutY="60.0" prefHeight="21.0" prefWidth="604.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="60.0" />
 
 
         <Label layoutX="262.0" layoutY="132.0" styleClass="label-titulo-gris" text="NOMBRE(S)" />
-        <Label fx:id="lblNombreUsuario" alignment="CENTER" layoutX="512.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="ISABEL ITZEL " />
-        <Label layoutX="558.0" layoutY="260.0" styleClass="label-titulo-gris" text="CORREO:" />
-        <Label fx:id="lblCorreo_institucional" alignment="CENTER" layoutX="219.0" layoutY="186.0" prefHeight="21.0" prefWidth="183.0" styleClass="label-informacion-gris" text="Label" />
+        <Label layoutX="585.0" layoutY="132.0" prefHeight="31.0" prefWidth="138.0" styleClass="label-titulo-gris" text="APELLIDO PATERNO" />
+        <Label layoutX="915.0" layoutY="132.0" prefHeight="31.0" prefWidth="138.0" styleClass="label-titulo-gris" text="APELLIDO MATERNO" />
 
-        <!-- Correo personal -->
-        <Label fx:id="lblCorreo_personal" alignment="CENTER" layoutX="484.0" layoutY="464.0" prefHeight="26.0" prefWidth="210.0" styleClass="label-informacion-gris" text="correo@ejemplo.com" />
-        <TextField fx:id="correoField" layoutX="482.0" layoutY="359.0" prefHeight="38.0" prefWidth="210.0" visible="false" />
-        <Button fx:id="btnModificar_correo" layoutX="692.0" layoutY="364.0" onAction="#onModificarCorreo">
+        <Label layoutX="450.0" layoutY="238.0" prefHeight="31.0" prefWidth="151.0" styleClass="label-titulo-gris" text="CORREO INSTITUCIONAL:" />
+        <Label layoutX="450.0" layoutY="328.0" prefHeight="31.0" prefWidth="124.0" styleClass="label-titulo-gris" text="CORREO PERSONAL:" />
+
+        <Label layoutX="450.0" layoutY="424.0" prefHeight="25.0" prefWidth="74.0" styleClass="label-titulo-gris" text="TELÉFONO:" />
+        <Label layoutX="450.0" layoutY="514.0" prefHeight="31.0" prefWidth="129.0" styleClass="label-titulo-gris" text="GRADO ACADEMICO:" />
+
+
+        <Label fx:id="lblNombreUsuario" alignment="CENTER_LEFT" layoutX="199.0" layoutY="175.0" prefHeight="26.0" prefWidth="288.0" styleClass="label-informacion-gris" text="[NOMBRE]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label fx:id="lblApellido_PaternoUsuario" alignment="CENTER_LEFT" layoutX="516.0" layoutY="175.0" prefHeight="26.0" prefWidth="288.0" styleClass="label-informacion-gris" text="[APELLIDO PATERNO]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label fx:id="lblApellido_MaternoUsuario" alignment="CENTER_LEFT" layoutX="858.0" layoutY="175.0" prefHeight="26.0" prefWidth="288.0" styleClass="label-informacion-gris" text="[APELLIDO MATERNO]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+
+        <Label fx:id="lblCorreo_institucional" alignment="CENTER_LEFT" layoutX="450.0" layoutY="279.0" prefHeight="26.0" prefWidth="250.0" styleClass="label-informacion-gris" text="[CORREO INSTITUCIONAL]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+
+        <Label fx:id="lblCorreo_personal" alignment="CENTER_LEFT" layoutX="450.0" layoutY="384.0" prefHeight="23.0" prefWidth="250.0" styleClass="label-informacion-gris" text="[CORREO PERSONAL]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <TextField fx:id="correoField" layoutX="448.0" layoutY="367.0" prefHeight="49.0" prefWidth="250.0" visible="false" />
+        <Button fx:id="btnModificarCorreoPersonal" layoutX="710.0" layoutY="384.0" onAction="#onModificarCorreo" prefHeight="31.0" prefWidth="36.0">
             <graphic>
-                <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true">
+                <ImageView fitHeight="23.0" fitWidth="20.0" preserveRatio="true">
                     <image>
                         <Image url="@../../../img/editar.png" />
                     </image>
@@ -67,13 +88,14 @@
             </graphic>
         </Button>
 
-        <!-- Teléfono -->
-        <Label layoutX="555.0" layoutY="405.0" styleClass="label-titulo-gris" text="TELEFONO:" />
-        <Label fx:id="lblTelefono" alignment="CENTER" layoutX="505.0" layoutY="573.0" prefHeight="26.0" prefWidth="165.0" styleClass="label-informacion-gris" text="1234567890" />
-        <TextField fx:id="telefonoField" layoutX="509.0" layoutY="456.0" prefHeight="37.0" prefWidth="165.0" visible="false" />
-        <Button fx:id="btnModificar_telefono" layoutX="692.0" layoutY="461.0" onAction="#onModificarTelefono">
+        <Label fx:id="lblTelefono" alignment="CENTER_LEFT" layoutX="443.0" layoutY="467.0" prefHeight="21.0" prefWidth="187.0" styleClass="label-informacion-gris" text="[TELÉFONO]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <TextField fx:id="telefonoField" layoutX="435.0" layoutY="461.0" prefHeight="41.0" prefWidth="193.0" visible="false" />
+        <Button fx:id="btnModificarTelefono" layoutX="638.0" layoutY="462.0" onAction="#onModificarTelefono" prefHeight="25.0" prefWidth="17.0">
             <graphic>
-                <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true">
+                <ImageView fitHeight="20.0" fitWidth="41.0" preserveRatio="true">
                     <image>
                         <Image url="@../../../img/editar.png" />
                     </image>
@@ -81,15 +103,10 @@
             </graphic>
         </Button>
 
-        <Label layoutX="528.0" layoutY="518.0" styleClass="label-titulo-gris" text="GRADO ACADEMICO:" />
-        <Label fx:id ="lblGradoAcademico" alignment="CENTER" layoutX="482.0" layoutY="365.0" prefHeight="26.0" prefWidth="210.0" styleClass="label-informacion-gris" text="lABEL" />
-
-        <Label layoutX="530.0" layoutY="132.0" styleClass="label-titulo-gris" text="APELLIDO PATERNO" />
-      <Label fx:id="lblApellido_PaternoUsuario" alignment="CENTER" layoutX="842.0" layoutY="189.0" prefHeight="23.0" prefWidth="165.0" styleClass="label-informacion-gris" text="Label" />
-      <Label text="Label" />
-      <Label layoutX="858.0" layoutY="132.0" styleClass="label-titulo-gris" text="APELLIDO MATERNO" />
-      <Label text="Label" />
-      <Label fx:id="lblApellido_MaternoUsuario" alignment="CENTER" layoutX="485.0" layoutY="323.0" prefHeight="25.0" prefWidth="210.0" styleClass="label-informacion-gris" text="Label" />
+        <Label fx:id="lblGradoAcademico" alignment="CENTER_LEFT" layoutX="450.0" layoutY="558.0" prefHeight="26.0" prefWidth="207.0" styleClass="label-informacion-gris" text="[GRADO ACADÉMICO]">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
 
     </children>
 </AnchorPane>
