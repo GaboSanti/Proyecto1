@@ -46,6 +46,7 @@ public class PerfilController implements Initializable {
         usuarioBD = new UsuarioBD();//Inicializa la conexión/gestión de la base de dato
         mostrarFechaActual();// Llama a la funcion para mostrar la fecha actual en la interfaz
         cargarDatosUsuarios();//Llama a una funcion para cargar la información del usuario desde la base de datos y mostrarla.
+        mostrarNombreUsuarioLogueado();
     }
 
     private void mostrarFechaActual() {
@@ -209,4 +210,26 @@ public class PerfilController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
+    //Obtiene el nombre completo del usuario actualmente logueado
+     //y lo muestra en el Label de la esquina superior derecha
+
+    private void mostrarNombreUsuarioLogueado() {
+        if (correoSesion != null && !correoSesion.isEmpty()) {
+            // Se realiza una consulta a la BD SOLO para obtener el nombre completo
+            Usuarios usuarioSesion = usuarioBD.obtenerUsuarioPorCorreoInstitucional(correoSesion);
+
+            if (usuarioSesion != null) {
+                String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
+                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
+                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
+                lblNombre.setText(nombreCompleto.trim());
+            } else {
+                lblNombre.setText("Usuario Desconocido");
+            }
+        } else {
+            lblNombre.setText("Sesión No Iniciada");
+        }
+    }
+
 }
