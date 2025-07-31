@@ -11,15 +11,12 @@ import java.sql.SQLException;
 
 public class UsuarioBD { // Renombrado de UsuarioDAO a UsuarioBD
 
-    /**
-     * Valida las credenciales de un usuario en la base de datos.
-     * @param correo Correo institucional del usuario.
-     * @param contrasena Contraseña.
-     * @return true si las credenciales son válidas, false en caso contrario.
-     */
-    public boolean validarCredenciales(String correo, String contrasena) {
+    //Valida las credenciales de un usuario en la base de datos.
+
+     public boolean validarCredenciales(String correo, String contrasena) {
+         //Cuenta el número de filas que cumplen la condición. Si devuelve 1, significa que encontró un usuario con ese correo y contraseña. Si devuelve 0, no lo encontró.
         String query = "SELECT COUNT(*) FROM usuarios WHERE correo_institucional = ? AND contrasena = ?";
-        try (Connection conn = ConexionBDRegistro.getConnection(); // Usa ConexionBDRegistro
+        try (Connection conn = ConexionBDRegistro.getConnection(); // Obtiene la conexión a la base de datos
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, correo);
@@ -29,19 +26,16 @@ public class UsuarioBD { // Renombrado de UsuarioDAO a UsuarioBD
             if (rs.next()) {
                 return rs.getInt(1) > 0;
             }
-        } catch (SQLException e) {
-            System.err.println("Error al validar credenciales: " + e.getMessage());
+        } catch (SQLException e) {//Captura cualquier excepción SQL que pueda ocurrir durante la operación de la base de datos
+            System.err.println("Error al validar credenciales: " + e.getMessage());//imprime el mensaje de error
         }
-        return false;
+        return false;//Si ocurre una excepción o no se encuentran las credenciales, la funcion devuelve false
     }
 
-    /**
-     * Obtiene todos los datos de un usuario a partir de su correo institucional.
-     * @param correoInstitucional Correo institucional del usuario.
-     * @return Un objeto Usuarios si se encuentra, null si no.
-     */
-    // Mantiene el nombre singular para coincidir con tu PerfilController actual
+    //Obtiene todos los datos de un usuario a partir de su correo institucional.
+
     public Usuarios obtenerUsuarioPorCorreoInstitucional(String correoInstitucional) {
+         //Recupera todos los detalles de un usuario de la base de datos basándose en su correoInstitucional
         String query = "SELECT nombre, apellido_paterno, apellido_materno, grado_academico, correo_personal, numero_telefono, correo_institucional, contrasena FROM usuarios WHERE correo_institucional = ?";
         try (Connection conn = ConexionBDRegistro.getConnection(); // Usa ConexionBDRegistro
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -51,14 +45,14 @@ public class UsuarioBD { // Renombrado de UsuarioDAO a UsuarioBD
 
             if (rs.next()) {
                 return new Usuarios( // Usa el constructor de Usuarios
-                        rs.getString("nombre"),
-                        rs.getString("apellido_paterno"),
-                        rs.getString("apellido_materno"),
-                        rs.getString("correo_institucional"),
-                        rs.getString("correo_personal"),
-                        rs.getString("numero_telefono"), // Coincide con el nombre de la columna y el nuevo getter
-                        rs.getString("grado_academico"),
-                        rs.getString("contrasena")
+                        rs.getString("correo_institucional"), // Primero el correo institucional
+                        rs.getString("nombre"),               // Luego el nombre
+                        rs.getString("apellido_paterno"),    // Luego apellido paterno
+                        rs.getString("apellido_materno"),    // Luego apellido materno
+                        rs.getString("grado_academico"),      // Luego grado académico
+                        rs.getString("correo_personal"),      // Luego correo personal
+                        rs.getString("numero_telefono"),      // Luego número de teléfono
+                        rs.getString("contrasena")            // Finalmente la contraseña
                 );
             }
         } catch (SQLException e) {
@@ -67,24 +61,20 @@ public class UsuarioBD { // Renombrado de UsuarioDAO a UsuarioBD
         return null;
     }
 
-    /**
-     * Actualiza el correo personal y el número de teléfono de un usuario.
-     * @param usuario El objeto Usuarios con los datos actualizados y el correo institucional para la identificación.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     */
-    // Mantiene el nombre singular para coincidir con tu PerfilController actual
+    //Actualiza el correo personal y el número de teléfono de un usuario.
     public boolean actualizarUsuario(Usuarios usuario) {
         // Solo actualiza correo_personal y numero_telefono
         String query = "UPDATE usuarios SET correo_personal = ?, numero_telefono = ? WHERE correo_institucional = ?";
+        // Especifica las columnas a actualizar y sus nuevos valores
         try (Connection conn = ConexionBDRegistro.getConnection(); // Usa ConexionBDRegistro
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, usuario.getCorreoPersonal());
-            stmt.setString(2, usuario.getNumeroTelefono()); // Coincide con el nuevo getter
-            stmt.setString(3, usuario.getCorreoInstitucional());
+            stmt.setString(1, usuario.getCorreoPersonal());// Establece el nuevo correo personal del usuario.
+            stmt.setString(2, usuario.getNumeroTelefono()); // Establece el nuevo número de teléfono del usuario.
+            stmt.setString(3, usuario.getCorreoInstitucional());//Establece el correo institucional que se usará en la cláusula WHERE para identificar al usuario a actualizar.
 
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
+            return rowsAffected > 0;//Si rowsAffected es mayor que 0, significa que al menos una fila fue actualizada exitosamente, y el método devuelve true
 
         } catch (SQLException e) {
             System.err.println("Error al actualizar usuario: " + e.getMessage());
