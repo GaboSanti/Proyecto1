@@ -33,6 +33,8 @@ public class PerfilController implements Initializable {
     @FXML private Label lblGradoAcademico; // Muestra Grado academico  visualmente
     @FXML private Label lblNombre; //Muestra nombre completo del usuario en la parte superior
     @FXML private Button btnAdmin;
+    @FXML private Label lblPeriodo;
+
 
 
     private UsuarioBD usuarioBD;   //Una instancia de la clase UsuarioBD que se utiliza para interactuar con la base de datos
@@ -235,9 +237,16 @@ public class PerfilController implements Initializable {
 
     //funcion para desactivar si el correo no coincide con el del Admin
     private void verificarAccesoAdmin(Button btnAdmin) {
-        String correoAdmin = "isa.com"; //correo  del administrador
+        String correoAdmin = "20243rd025@utez.edu.mx"; //correo  del administrador
         if (correoSesion != null && !correoSesion.equals(correoAdmin)) {
             btnAdmin.setDisable(true); // Desactiva el botón si el usuario no es el admin
+        }
+    }
+
+    // Funcion para recibir y mostrar el periodo
+    public void setPeriodo(String periodo) {
+        if (lblPeriodo != null) {
+            lblPeriodo.setText(periodo);
         }
     }
 
