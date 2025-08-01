@@ -23,7 +23,7 @@
 
         <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
 
-        <Label layoutX="495.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="17.0">
+        <Label layoutX="414.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="414.0" AnchorPane.topAnchor="17.0">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
