@@ -1,23 +1,17 @@
 package com.example.proyecto1.model;
 
-import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import java.util.Map;
 
 public class HorarioUsuariosPorDia {
 
-
     private String correo;
-
-    @SerializedName("horario")
     private Map<String, List<Integer>> horarioMap;
-
 
     public HorarioUsuariosPorDia(String correo, Map<String, List<Integer>> horarioMap) {
         this.correo = correo;
         this.horarioMap = horarioMap;
     }
-
 
     public String getCorreo() {
         return correo;
@@ -27,16 +21,15 @@ public class HorarioUsuariosPorDia {
         this.correo = correo;
     }
 
-
     public Map<String, List<Integer>> getHorarioMap() {
         return horarioMap;
     }
-
 
     public void setHorarioMap(Map<String, List<Integer>> horarioMap) {
         this.horarioMap = horarioMap;
     }
 }
+
 
 
 
