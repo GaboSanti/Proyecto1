@@ -37,6 +37,8 @@ public class AdminController implements Initializable {
     @FXML private Label lblFecha;
     @FXML private Label lblPeriodo;
     @FXML private Label lblNombre;
+    private String periodoAsignado; // Variable para almacenar el periodo
+
 
     private UsuarioBD usuarioBD;   //Una instancia de la clase UsuarioBD que se utiliza para interactuar con la base de datos
     private Usuarios usuariosActual;//Un objeto de la clase Usuarios que contendrá la información del usuario actualmente logueado
@@ -65,8 +67,10 @@ public class AdminController implements Initializable {
         LocalDate fechaSeleccionadaFinal = fecha_cierre.getValue();
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
         String fechaCierre = fechaSeleccionadaFinal.format(formatter1);
-        lblPeriodo.setText("Periodo asignado: "+fechaInicio +" al "+ fechaCierre);
 
+        // Guarda el periodo en la variable
+        periodoAsignado = "Periodo asignado: " + fechaInicio + " al " + fechaCierre;
+        lblPeriodo.setText(periodoAsignado);
     }
 
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
@@ -91,7 +95,22 @@ public class AdminController implements Initializable {
 
     @FXML
     protected void onIrPerfil(ActionEvent event) throws IOException {
-        cambiarVentana("Perfil.fxml", event, "Perfil");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
+        Parent root = loader.load();
+        // 2. Obtiene el controlador de la ventana a la que se dirijira
+        PerfilController perfilController = loader.getController();
+
+        // 3. Pasa el periodo al nuevo controlador
+        //    Solo si el periodoAsignado no es nulo
+        if (periodoAsignado != null) {
+            perfilController.setPeriodo(periodoAsignado);
+        }
+
+        // 4. Muestra la nueva ventana
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Horario");
+        stage.show();
     }
     @FXML
     protected void onSalir(ActionEvent event) throws IOException {
