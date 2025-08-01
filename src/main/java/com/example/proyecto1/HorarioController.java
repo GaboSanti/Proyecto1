@@ -46,9 +46,11 @@ public class HorarioController {
     private Label lblFecha;
     @FXML
     private Label lblNombre;
-    private UsuarioBD usuarioBD;
-    String correoSesion = SesionUsuario.getCorreoInstitucional();
-    private Usuarios usuariosActual;
+
+    private UsuarioBD usuarioBD;   //Una instancia de la clase UsuarioBD que se utiliza para interactuar con la base de datos
+    private Usuarios usuariosActual;//Un objeto de la clase Usuarios que contendrá la información del usuario actualmente logueado
+
+    String correoSesion = SesionUsuario.getCorreoInstitucional();//Obtiene el correo institucional del usuario de una clase SesionUsuario
 
 
     private final Map<String, List<Integer>> horarioSeleccionado = new LinkedHashMap<>();
@@ -56,8 +58,9 @@ public class HorarioController {
 
     @FXML
     public void initialize() {
-
+        usuarioBD = new UsuarioBD();
         mostrarFechaActual();
+        mostrarNombreUsuarioLogueado();
 
 
         for (Node node : gridPaneHorario.getChildren()) {
@@ -208,6 +211,24 @@ public class HorarioController {
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
         lblFecha.setText(fechaActual.format(formatter));
+    }
+
+    private void mostrarNombreUsuarioLogueado() {
+        if (correoSesion != null && !correoSesion.isEmpty()) {
+            // Se realiza una consulta a la BD SOLO para obtener el nombre completo
+            Usuarios usuarioSesion = usuarioBD.obtenerUsuarioPorCorreoInstitucional(correoSesion);
+
+            if (usuarioSesion != null) {
+                String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
+                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
+                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
+                lblNombre.setText(nombreCompleto.trim());
+            } else {
+                lblNombre.setText("Usuario Desconocido");
+            }
+        } else {
+            lblNombre.setText("Sesión No Iniciada");
+        }
     }
 
 
