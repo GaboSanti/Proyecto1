@@ -2,6 +2,8 @@ package com.example.proyecto1;
 
 import com.example.proyecto1.UsuarioBD; // Importa UsuarioBD
 import com.example.proyecto1.Usuarios; // Importa  Usuarios
+import com.example.proyecto1.HorarioController;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,11 +20,10 @@ import java.net.URL;
 import java.time.LocalDate;//para la fecha
 import java.time.format.DateTimeFormatter;//para formato de fechas
 import java.util.ResourceBundle;
-
 import javafx.scene.Node;
-import javafx.fxml.Initializable;
 
-
+import javafx.stage.FileChooser;//para la funcion de exportar
+import java.io.File;
 
 public class AdminController implements Initializable {
 
@@ -117,6 +118,15 @@ public class AdminController implements Initializable {
         cambiarVentana("hello-view.fxml", event, "Iniciar Sesion");
     }
 
+    // metodo  para mostrar mensajes de alerta al usuario
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
     private void mostrarNombreUsuarioLogueado() {
         if (correoSesion != null && !correoSesion.isEmpty()) {
             // Se realiza una consulta a la BD SOLO para obtener el nombre completo
@@ -132,6 +142,36 @@ public class AdminController implements Initializable {
             }
         } else {
             lblNombre.setText("Sesión No Iniciada");
+        }
+    }
+
+    @FXML
+    public void onExportar() {
+        // Abre un cuadro de diálogo para que el usuario elija dónde guardar el archivo.
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Horario CSV");
+        // Agrega un filtro para que el usuario solo pueda guardar archivos de tipo csv
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Archivos CSV (*.csv)", "*.csv")
+                //new FileChooser.ExtensionFilter("Archivos de Texto (*.txt)", "*.txt")
+
+        );
+
+        // Muestra el cuadro de diálogo y obtén la ruta del archivo seleccionado
+        File archivoSeleccionado = fileChooser.showSaveDialog(new Stage());
+
+        //  Verifica que el usuario haya seleccionó una ubicación
+        if (archivoSeleccionado != null) {
+            //  Crea una instancia  y llama a la función de exportación.
+            HorarioRepositorio repo = new HorarioRepositorio();
+            boolean exito = repo.exportarHorarios(archivoSeleccionado.getAbsolutePath());
+
+            // Muestra un mensaje al usuario con el resultado
+            if (exito) {
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Exportación Exitosa", "El horario se ha exportado correctamente a: " + archivoSeleccionado.getAbsolutePath());
+            } else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error de Exportación", "Hubo un problema al exportar el horario.");
+            }
         }
     }
 
