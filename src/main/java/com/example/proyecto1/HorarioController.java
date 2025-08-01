@@ -231,6 +231,12 @@ public class HorarioController {
         }
     }
 
+    public boolean exportarDatosDeHorario(String rutaArchivo) {
+        HorarioRepositorio repo = new HorarioRepositorio();
+        return repo.exportarHorarios(rutaArchivo);
+    }
+
+
 
 }
 
