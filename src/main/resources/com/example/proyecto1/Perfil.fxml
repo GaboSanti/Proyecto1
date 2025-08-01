@@ -26,16 +26,16 @@
             </font>
         </Label>
 
-        <Label fx:id="lblFecha" alignment="CENTER" layoutX="921.0" layoutY="23.0" prefHeight="25.0" prefWidth="138.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="23.0">
+        <!-- Nombre y fecha -->
+        <Label fx:id="lblFecha" alignment="CENTER" layoutX="814.0" layoutY="23.0" prefHeight="17.0" prefWidth="105.0" AnchorPane.rightAnchor="281.0" AnchorPane.topAnchor="23.0">
             <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="187.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
+                <Font size="16.0" />
+            </font></Label>
+        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="259.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
             <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
+                <Font size="16.0" />
+            </font></Label>
+
 
         <Button fx:id="btnGuardar" layoutX="794.0" layoutY="632.0" minHeight="35.0" minWidth="80.0" onAction="#onGuardar" text="Guardar" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="794.0" />
 
