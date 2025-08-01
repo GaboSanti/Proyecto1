@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter;
 
 public class PerfilController implements Initializable {
 
-
     @FXML private Label lblNombreUsuario; // Muestra Nombre del usuario visualmente
     @FXML private Label lblFecha;   //muestra la fecha de la computadora
     @FXML private Label lblCorreo_institucional; // Muestra el correo institucional visualmente
@@ -33,6 +32,8 @@ public class PerfilController implements Initializable {
     @FXML private Label lblApellido_MaternoUsuario; // Muestra Apellido Materno visualmente
     @FXML private Label lblGradoAcademico; // Muestra Grado academico  visualmente
     @FXML private Label lblNombre; //Muestra nombre completo del usuario en la parte superior
+    @FXML private Button btnAdmin;
+
 
     private UsuarioBD usuarioBD;   //Una instancia de la clase UsuarioBD que se utiliza para interactuar con la base de datos
     private Usuarios usuariosActual;//Un objeto de la clase Usuarios que contendrá la información del usuario actualmente logueado
@@ -45,7 +46,8 @@ public class PerfilController implements Initializable {
         usuarioBD = new UsuarioBD();//Inicializa la conexión/gestión de la base de dato
         mostrarFechaActual();// Llama a la funcion para mostrar la fecha actual en la interfaz
         cargarDatosUsuarios();//Llama a una funcion para cargar la información del usuario desde la base de datos y mostrarla.
-        mostrarNombreUsuarioLogueado();
+        mostrarNombreUsuarioLogueado();//llama la funcion para mostrar el nombre del usuario
+        verificarAccesoAdmin(btnAdmin); // Llama a la función para verificar si no es admin se desactivaa
     }
 
     private void mostrarFechaActual() {
@@ -220,15 +222,22 @@ public class PerfilController implements Initializable {
 
             if (usuarioSesion != null) {
                 String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
-                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "" + " "+
-                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "" + " ")
-                                );
+                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
+                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
                 lblNombre.setText(nombreCompleto.trim());
             } else {
                 lblNombre.setText("Usuario Desconocido");
             }
         } else {
             lblNombre.setText("Sesión No Iniciada");
+        }
+    }
+
+    //funcion para desactivar si el correo no coincide con el del Admin
+    private void verificarAccesoAdmin(Button btnAdmin) {
+        String correoAdmin = "isa.com"; //correo  del administrador
+        if (correoSesion != null && !correoSesion.equals(correoAdmin)) {
+            btnAdmin.setDisable(true); // Desactiva el botón si el usuario no es el admin
         }
     }
 
