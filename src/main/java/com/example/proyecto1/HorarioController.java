@@ -58,9 +58,7 @@ public class HorarioController {
     public void initialize() {
 
         mostrarFechaActual();
-        usuarioBD = new UsuarioBD();
-        correoSesion = SesionUsuario.getCorreoInstitucional();
-        mostrarNombreUsuarioLogueado();
+
 
         for (Node node : gridPaneHorario.getChildren()) {
             if (node instanceof Button boton) {
@@ -212,23 +210,6 @@ public class HorarioController {
         lblFecha.setText(fechaActual.format(formatter));
     }
 
-    private void mostrarNombreUsuarioLogueado() {
-        if (correoSesion != null && !correoSesion.isEmpty()) {
-            // Se realiza una consulta a la BD SOLO para obtener el nombre completo
-            Usuarios usuarioSesion = usuarioBD.obtenerUsuarioPorCorreoInstitucional(correoSesion);
-
-            if (usuarioSesion != null) {
-                String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
-                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
-                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
-                lblNombre.setText(nombreCompleto.trim());
-            } else {
-                lblNombre.setText("Usuario Desconocido");
-            }
-        } else {
-            lblNombre.setText("Sesión No Iniciada");
-        }
-    }
 
 }
 
