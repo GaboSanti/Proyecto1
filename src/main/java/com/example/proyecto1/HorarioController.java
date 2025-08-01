@@ -7,11 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +31,8 @@ public class HorarioController {
     @FXML
     private Button btnGuardar;
     @FXML
+    private Button btnModificar;
+    @FXML
     private Button btnPerfil;
     @FXML
     private Button btnHorario;
@@ -37,21 +42,20 @@ public class HorarioController {
     private Button btnAdmin;
     @FXML
     private Pane paneHorario;
+    @FXML
+    private Label lblFecha;
 
     private final Map<String, List<Integer>> horarioSeleccionado = new LinkedHashMap<>();
-
-    // MODIFICACIÓN: Flag para saber si el horario ya está guardado y, por tanto, bloquear la edición.
     private boolean horarioBloqueado = false;
 
     @FXML
     public void initialize() {
+        mostrarFechaActual();
 
         for (Node node : gridPaneHorario.getChildren()) {
             if (node instanceof Button boton) {
                 boton.setStyle("-fx-background-color: #FF6666; -fx-border-color: black; -fx-border-width: 1px;");
-
                 boton.setOnAction(e -> {
-                    // MODIFICACIÓN: Si está bloqueado, ignorar cualquier intento de cambio.
                     if (horarioBloqueado) return;
 
                     String currentStyle = boton.getStyle();
@@ -69,34 +73,30 @@ public class HorarioController {
 
     private void cargarHorarioDesdeBD() {
         String correo = SesionUsuario.getCorreoInstitucional();
-        if (correo == null) {
-            return;
-        }
+        if (correo == null) return;
 
         HorarioRepositorio repo = new HorarioRepositorio();
         HorarioUsuariosPorDia horarioGuardado = repo.obtenerHorarioPorCorreo(correo);
+        if (horarioGuardado == null) return;
 
-        if (horarioGuardado == null) {
-            return;
-        }
+        horarioSeleccionado.clear();
 
         Map<String, List<Integer>> horarioMap = horarioGuardado.getHorarioMap();
 
         for (Map.Entry<String, List<Integer>> entry : horarioMap.entrySet()) {
-            String dia = entry.getKey(); // Ej: "LU"
-            List<Integer> intervalos = entry.getValue(); // Ej: [1, 2, 3]
-            int col = HorarioUtils.diaToId(dia) - 1;
+            String dia = entry.getKey();
+            List<Integer> intervalos = entry.getValue();
+            int col = HorarioUtils.diaToId(dia);
 
             for (Integer row : intervalos) {
                 for (Node node : gridPaneHorario.getChildren()) {
                     if (node instanceof Button boton) {
-                        int colIndex = GridPane.getColumnIndex(boton) != null ? GridPane.getColumnIndex(boton) : 0;
-                        int rowIndex = GridPane.getRowIndex(boton) != null ? GridPane.getRowIndex(boton) : 0;
+
+                        int colIndex = GridPane.getColumnIndex(boton) == null ? 0 : GridPane.getColumnIndex(boton);
+                        int rowIndex = GridPane.getRowIndex(boton) == null ? 0 : GridPane.getRowIndex(boton);
 
                         if (colIndex == col && rowIndex == row) {
-
                             boton.setStyle("-fx-background-color: #5DF563; -fx-border-color: black; -fx-border-width: 1px;");
-
                             horarioSeleccionado.putIfAbsent(dia, new ArrayList<>());
                             if (!horarioSeleccionado.get(dia).contains(row)) {
                                 horarioSeleccionado.get(dia).add(row);
@@ -107,29 +107,26 @@ public class HorarioController {
             }
         }
 
-        // MODIFICACIÓN: Como ya hay horario en BD, bloquear edición y el botón Guardar.
         horarioBloqueado = true;
-        bloquearBoton(true);
+        btnGuardar.setDisable(true);
     }
 
     @FXML
     private void guardarHorario() {
-
-        // MODIFICACIÓN: Si ya está bloqueado (ya tiene horario guardado), no permitir volver a guardar.
         if (horarioBloqueado) {
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Horario ya registrado",
-                    "Ya tienes un horario guardado. Para modificarlo, contacta al administrador (o habilita edición si implementas esa función).");
             return;
         }
+
+        horarioSeleccionado.clear();
 
         for (Node node : gridPaneHorario.getChildren()) {
             if (node instanceof Button boton) {
                 String style = boton.getStyle();
                 if (style.contains("#5DF563")) {
-                    int col = GridPane.getColumnIndex(boton) != null ? GridPane.getColumnIndex(boton) : 0;
-                    int row = GridPane.getRowIndex(boton) != null ? GridPane.getRowIndex(boton) : 0;
+                    int col = GridPane.getColumnIndex(boton) == null ? 0 : GridPane.getColumnIndex(boton);
+                    int row = GridPane.getRowIndex(boton) == null ? 0 : GridPane.getRowIndex(boton);
 
-                    String dia = HorarioUtils.idToDiaSigla(col + 1); // Porque col 0 = LU (1)
+                    String dia = HorarioUtils.idToDiaSigla(col);
 
                     horarioSeleccionado.putIfAbsent(dia, new ArrayList<>());
                     if (!horarioSeleccionado.get(dia).contains(row)) {
@@ -140,27 +137,26 @@ public class HorarioController {
         }
 
         String correo = SesionUsuario.getCorreoInstitucional();
-        System.out.println("Correo: " + correo);
-        System.out.println("Horario seleccionado: " + horarioSeleccionado);
-
-        if (correo == null) {
-            return;
-        }
+        if (correo == null) return;
 
         HorarioUsuariosPorDia horario = new HorarioUsuariosPorDia(correo, horarioSeleccionado);
         HorarioRepositorio repo = new HorarioRepositorio();
         boolean resultado = repo.guardarHorario(horario);
 
         if (resultado) {
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Guardado", "¡Horario registrado correctamente!");
-
-            // MODIFICACIÓN: Tras guardar por primera vez, bloquear edición y el botón Guardar.
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Guardado", "¡Horario Registrado Correctamente.!");
             horarioBloqueado = true;
-            bloquearBoton(true);
-
+            btnGuardar.setDisable(true);
         } else {
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Error", "No se pudo guardar el horario");
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo guardar el horario");
         }
+    }
+
+    @FXML
+    private void modificarHorario() {
+        horarioBloqueado = false;
+        btnGuardar.setDisable(false);
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Edición", "Solo puedes modificar tu horario durante el periodo asignado.");
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
@@ -169,18 +165,6 @@ public class HorarioController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
-    }
-
-
-    private void bloquearBoton(boolean bloquear) {
-        for (Node node : gridPaneHorario.getChildren()) {
-            if (node instanceof Button boton) {
-                boton.setDisable(bloquear);
-            }
-        }
-        if (btnGuardar != null) {
-            btnGuardar.setDisable(bloquear);
-        }
     }
 
     @FXML
@@ -206,11 +190,15 @@ public class HorarioController {
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle(titulo);
         stage.show();
     }
 
-
+    private void mostrarFechaActual() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
+        lblFecha.setText(fechaActual.format(formatter));
+    }
 }
