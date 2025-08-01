@@ -2,8 +2,7 @@ package com.example.proyecto1;
 
 import com.example.proyecto1.UsuarioBD; // Importa UsuarioBD
 import com.example.proyecto1.Usuarios; // Importa  Usuarios
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -221,8 +220,9 @@ public class PerfilController implements Initializable {
 
             if (usuarioSesion != null) {
                 String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
-                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
-                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
+                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "" + " "+
+                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "" + " ")
+                                );
                 lblNombre.setText(nombreCompleto.trim());
             } else {
                 lblNombre.setText("Usuario Desconocido");
