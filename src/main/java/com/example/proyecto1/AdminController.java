@@ -105,10 +105,8 @@ public class AdminController implements Initializable {
 
             if (usuarioSesion != null) {
                 String nombreCompleto = (usuarioSesion.getNombre() != null ? usuarioSesion.getNombre() : "") + " " +
-                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "" + " "+
-                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "" + " ")
-
-                        );
+                        (usuarioSesion.getApellidoPaterno() != null ? usuarioSesion.getApellidoPaterno() : "") + " " +
+                        (usuarioSesion.getApellidoMaterno() != null ? usuarioSesion.getApellidoMaterno() : "");
                 lblNombre.setText(nombreCompleto.trim());
             } else {
                 lblNombre.setText("Usuario Desconocido");
