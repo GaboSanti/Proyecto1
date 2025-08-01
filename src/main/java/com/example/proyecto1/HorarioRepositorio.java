@@ -7,6 +7,9 @@ import java.io.StringReader;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 import java.util.Map;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class HorarioRepositorio {
     private final Gson gson = new Gson();
@@ -60,6 +63,37 @@ public class HorarioRepositorio {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean exportarHorarios(String rutaArchivo) {
+        String sql = "SELECT CORREO_INSTITUCIONAL, DIA_HORA FROM HORARIO";
+
+        try (Connection conn = ConexionBDRegistro.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery();
+             FileWriter csvWriter = new FileWriter(rutaArchivo)) {
+
+            csvWriter.append("Correo Institucional,Horario \n");
+
+            while (rs.next()) {
+                String correo = rs.getString("CORREO_INSTITUCIONAL");
+                String diaHora = rs.getString("DIA_HORA");
+
+
+                correo = correo.replace("\"", "\"\"");
+                diaHora = diaHora.replace("\"", "\"\"");
+
+                csvWriter.append("\"").append(correo).append("\",");
+                csvWriter.append("\"").append(diaHora).append("\"\n");
+            }
+
+            csvWriter.flush();
+            return true;
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
 
