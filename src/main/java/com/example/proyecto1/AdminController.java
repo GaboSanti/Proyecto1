@@ -91,7 +91,22 @@ public class AdminController implements Initializable {
 
     @FXML
     protected void onIrHorario(ActionEvent event) throws IOException {
-        cambiarVentana("Horario.fxml", event, "Horario");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Horario.fxml"));
+        Parent root = loader.load();
+        // 2. Obtiene el controlador de la ventana a la que se dirijira
+        HorarioController horarioController = loader.getController();
+
+        // 3. Pasa el periodo al nuevo controlador
+        //    Solo si el periodoAsignado no es nulo
+        if (periodoAsignado != null) {
+            horarioController.setPeriodo(periodoAsignado);
+        }
+
+        // 4. Muestra la nueva ventana
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Horario");
+        stage.show();
     }
 
     @FXML
@@ -110,7 +125,7 @@ public class AdminController implements Initializable {
         // 4. Muestra la nueva ventana
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Horario");
+        stage.setTitle("Perfil");
         stage.show();
     }
     @FXML
