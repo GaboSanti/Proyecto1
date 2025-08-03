@@ -46,7 +46,10 @@ public class HorarioController {
     private Label lblFecha;
     @FXML
     private Label lblNombre;
+    @FXML
+    private Label lblPeriodo;
 
+    private String periodoAsignado;
     private UsuarioBD usuarioBD;   //Una instancia de la clase UsuarioBD que se utiliza para interactuar con la base de datos
     private Usuarios usuariosActual;//Un objeto de la clase Usuarios que contendrá la información del usuario actualmente logueado
 
@@ -61,6 +64,7 @@ public class HorarioController {
         usuarioBD = new UsuarioBD();
         mostrarFechaActual();
         mostrarNombreUsuarioLogueado();
+        verificarAccesoAdmin(btnAdmin);
 
 
         for (Node node : gridPaneHorario.getChildren()) {
@@ -236,6 +240,19 @@ public class HorarioController {
         return repo.exportarHorarios(rutaArchivo);
     }
 
+
+    private void verificarAccesoAdmin(Button btnAdmin) {
+        String correoAdmin = "20243rd025@utez.edu.mx"; //correo  del administrador
+        if (correoSesion != null && !correoSesion.equals(correoAdmin)) {
+            btnAdmin.setDisable(true); // Desactiva el botón si el usuario no es el admin
+        }
+    }
+
+    public void setPeriodo(String periodo) {
+        if (lblPeriodo != null) {
+            lblPeriodo.setText(periodo);
+        }
+    }
 
 
 }
