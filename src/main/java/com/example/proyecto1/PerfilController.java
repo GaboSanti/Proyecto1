@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import java.time.LocalDate;
@@ -49,7 +53,9 @@ public class PerfilController implements Initializable {
         mostrarFechaActual();// Llama a la funcion para mostrar la fecha actual en la interfaz
         cargarDatosUsuarios();//Llama a una funcion para cargar la información del usuario desde la base de datos y mostrarla.
         mostrarNombreUsuarioLogueado();//llama la funcion para mostrar el nombre del usuario
-        verificarAccesoAdmin(btnAdmin); // Llama a la función para verificar si no es admin se desactivaa
+        verificarAccesoAdmin(btnAdmin); // Llama a la función para verificar si no es admin se desactiva
+        cargarPeriodoDesdeBD();// Carga el periodo al inicializar
+
     }
 
     private void mostrarFechaActual() {
@@ -194,17 +200,11 @@ public class PerfilController implements Initializable {
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
-        Stage stage;
-        if (event != null) {
-            stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        } else {
-            stage = new Stage();
-        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle(titulo);
         stage.show();
     }
-
     // metodo  para mostrar mensajes de alerta al usuario
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
@@ -243,10 +243,24 @@ public class PerfilController implements Initializable {
         }
     }
 
-    // Funcion para recibir y mostrar el periodo
-    public void setPeriodo(String periodo) {
-        if (lblPeriodo != null) {
-            lblPeriodo.setText(periodo);
+    // funcion para cargar el periodo desde la base de datos ---
+    private void cargarPeriodoDesdeBD() {
+        String sql = "SELECT fecha_inicio, fecha_fin FROM periodo ORDER BY fecha_id DESC FETCH FIRST 1 ROW ONLY";
+
+        try (Connection conn = ConexionBDRegistro.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                LocalDate fechaInicio = rs.getDate("fecha_inicio").toLocalDate();
+                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
+                String periodoGuardado = "Periodo asignado: " + fechaInicio.format(formatter) + " al " + fechaFin.format(formatter);
+                lblPeriodo.setText(periodoGuardado);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al cargar el periodo desde la BD: " + e.getMessage());
         }
     }
 
