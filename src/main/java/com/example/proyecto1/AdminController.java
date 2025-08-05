@@ -4,6 +4,10 @@ import com.example.proyecto1.UsuarioBD; // Importa UsuarioBD
 import com.example.proyecto1.Usuarios; // Importa  Usuarios
 import com.example.proyecto1.HorarioController;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -62,16 +66,28 @@ public class AdminController implements Initializable {
 
     public void onAsignarFecha() {
         LocalDate fechaSeleccionada = fecha_inicio.getValue();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
-        String fechaInicio = fechaSeleccionada.format(formatter);
-
         LocalDate fechaSeleccionadaFinal = fecha_cierre.getValue();
-        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
-        String fechaCierre = fechaSeleccionadaFinal.format(formatter1);
+        if (fechaSeleccionada != null && fechaSeleccionadaFinal != null) {
+            // Guarda el periodo en la base de datos
+            String sql = "INSERT INTO periodo_asignado (fecha_inicio, fecha_cierre) VALUES (?, ?)";
 
-        // Guarda el periodo en la variable
-        periodoAsignado = "Periodo asignado: " + fechaInicio + " al " + fechaCierre;
-        lblPeriodo.setText(periodoAsignado);
+            try (Connection conn = ConexionBDRegistro.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setDate(1, java.sql.Date.valueOf(fechaSeleccionada));
+                pstmt.setDate(2, java.sql.Date.valueOf(fechaSeleccionadaFinal));
+
+                pstmt.executeUpdate();
+                System.out.println("Periodo guardado en la base de datos de Oracle.");
+
+
+            } catch (SQLException e) {
+                System.err.println("Error al guardar el periodo en la BD: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Por favor, selecciona ambas fechas.");
+        }
     }
 
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
@@ -91,42 +107,7 @@ public class AdminController implements Initializable {
 
     @FXML
     protected void onIrHorario(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Horario.fxml"));
-        Parent root = loader.load();
-        // 2. Obtiene el controlador de la ventana a la que se dirijira
-        HorarioController horarioController = loader.getController();
-
-        // 3. Pasa el periodo al nuevo controlador
-        //    Solo si el periodoAsignado no es nulo
-        if (periodoAsignado != null) {
-            horarioController.setPeriodo(periodoAsignado);
-        }
-
-        // 4. Muestra la nueva ventana
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Horario");
-        stage.show();
-    }
-
-    @FXML
-    protected void onIrPerfil(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Perfil.fxml"));
-        Parent root = loader.load();
-        // 2. Obtiene el controlador de la ventana a la que se dirijira
-        PerfilController perfilController = loader.getController();
-
-        // 3. Pasa el periodo al nuevo controlador
-        //    Solo si el periodoAsignado no es nulo
-        if (periodoAsignado != null) {
-            perfilController.setPeriodo(periodoAsignado);
-        }
-
-        // 4. Muestra la nueva ventana
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Perfil");
-        stage.show();
+        cambiarVentana("Horario.fxml", event, "Horario");
     }
     @FXML
     protected void onSalir(ActionEvent event) throws IOException {
