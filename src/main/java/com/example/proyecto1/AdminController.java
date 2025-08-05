@@ -70,7 +70,7 @@ public class AdminController implements Initializable {
         LocalDate fechaSeleccionadaFinal = fecha_cierre.getValue();
         if (fechaSeleccionada != null && fechaSeleccionadaFinal != null) {
             // Guarda el periodo en la base de datos
-            String sql = "INSERT INTO periodo_asignado (fecha_inicio, fecha_cierre) VALUES (?, ?)";
+            String sql = "INSERT INTO periodo_asignado (fecha_inicio, fecha_fin) VALUES (?, ?)";
 
             try (Connection conn = ConexionBDRegistro.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -81,6 +81,8 @@ public class AdminController implements Initializable {
                 pstmt.executeUpdate();
                 System.out.println("Periodo guardado en la base de datos de Oracle.");
 
+                // Vuelve a cargar el periodo para actualizar la etiqueta
+                cargarPeriodoDesdeBD();
 
             } catch (SQLException e) {
                 System.err.println("Error al guardar el periodo en la BD: " + e.getMessage());
@@ -175,7 +177,7 @@ public class AdminController implements Initializable {
 
     // funcion para cargar el periodo desde la base de datos ---
     private void cargarPeriodoDesdeBD() {
-        String sql = "SELECT fecha_inicio, fecha_cierre FROM periodo_asignado ORDER BY id DESC FETCH FIRST 1 ROW ONLY";
+        String sql = "SELECT fecha_inicio, fecha_fin FROM periodo_asignado ORDER BY id DESC FETCH FIRST 1 ROW ONLY";
 
         try (Connection conn = ConexionBDRegistro.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -183,7 +185,7 @@ public class AdminController implements Initializable {
 
             if (rs.next()) {
                 LocalDate fechaInicio = rs.getDate("fecha_inicio").toLocalDate();
-                LocalDate fechaCierre = rs.getDate("fecha_cierre").toLocalDate();
+                LocalDate fechaCierre = rs.getDate("fecha_fin").toLocalDate();
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
                 String periodoGuardado = "Periodo asignado: " + fechaInicio.format(formatter) + " al " + fechaCierre.format(formatter);
