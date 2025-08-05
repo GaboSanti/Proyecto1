@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.lang.model.type.NullType;
 import java.io.IOException;
 import java.sql.*;
 
@@ -30,8 +31,7 @@ public class HelloController {
                 SesionUsuario.setCorreoInstitucional(correoIngresado);
                 cambiarVentana("Horario.fxml", event, "Horario");
             }else {
-                mostrarAlerta("Error", "Datos incorrectas",
-                        "El correo o contraseña son incorrectos.");
+                mostrarAlerta("Error", "Datos incorrectas \nEl correo o contraseña son incorrectos.");
             }
         }
     }
@@ -52,8 +52,7 @@ public class HelloController {
 
     private boolean validarFormulario(String correoIngresado, String passwordIngresado ) {
         if (correoIngresado.isEmpty() || passwordIngresado.isEmpty()) {
-            mostrarAlerta("Error", "Campos vacíos",
-                    "Por favor complete todos los campos.");
+            mostrarAlerta("Error", "Campos vacíos \nPor favor complete todos los campos.");
             return false;
         }
         return true;
@@ -77,8 +76,7 @@ public class HelloController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "Error de base de datos",
-                    "Ocurrió un error al consultar las credenciales.");
+            mostrarAlerta("Error", "Error de base de datos \nOcurrió un error al consultar las credenciales.");
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -91,10 +89,10 @@ public class HelloController {
         return false;
     }
 
-    private void mostrarAlerta(String titulo, String header, String contenido) {
+    private void mostrarAlerta(String titulo, String contenido) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
-        alert.setHeaderText(header);
+        alert.setHeaderText(null);
         alert.setContentText(contenido);
         alert.showAndWait();
     }
