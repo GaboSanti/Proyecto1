@@ -7,6 +7,7 @@ import com.example.proyecto1.HorarioController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -171,4 +172,25 @@ public class AdminController implements Initializable {
         }
     }
 
+
+    // funcion para cargar el periodo desde la base de datos ---
+    private void cargarPeriodoDesdeBD() {
+        String sql = "SELECT fecha_inicio, fecha_cierre FROM periodo_asignado ORDER BY id DESC FETCH FIRST 1 ROW ONLY";
+
+        try (Connection conn = ConexionBDRegistro.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                LocalDate fechaInicio = rs.getDate("fecha_inicio").toLocalDate();
+                LocalDate fechaCierre = rs.getDate("fecha_cierre").toLocalDate();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
+                String periodoGuardado = "Periodo asignado: " + fechaInicio.format(formatter) + " al " + fechaCierre.format(formatter);
+                lblPeriodo.setText(periodoGuardado);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al cargar el periodo desde la BD: " + e.getMessage());
+        }
+    }
 }
