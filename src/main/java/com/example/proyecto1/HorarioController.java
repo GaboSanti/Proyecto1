@@ -295,13 +295,16 @@ public class HorarioController {
                 LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
                 LocalDate hoy = LocalDate.now();
 
+
+
                 if (hoy.isAfter(fechaFin)) {
                     btnModificar.setDisable(true);
-                    System.out.println("El periodo ha terminado y ya no se puede modificar.");
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes editar.");
+
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al verificar periodo: " + e.getMessage());
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Error", "No se pudo cargar");
         }
     }
 }
