@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 
 import java.io.IOException;
 import java.sql.*;
@@ -46,8 +48,16 @@ public class HelloController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setMaximized(true);
         stage.setScene(new Scene(root));
         stage.setTitle(titulo);
+
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(screenBounds.getMinX());
+        stage.setY(screenBounds.getMinY());
+        stage.setWidth(screenBounds.getWidth());
+        stage.setHeight(screenBounds.getHeight());
         stage.show();
     }
 
