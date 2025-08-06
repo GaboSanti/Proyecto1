@@ -13,6 +13,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,6 +27,9 @@ import java.util.LinkedHashMap;
 import com.example.proyecto1.util.HorarioUtils;
 import com.example.proyecto1.model.HorarioUsuariosPorDia;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HorarioController {
 
@@ -65,6 +72,7 @@ public class HorarioController {
         mostrarFechaActual();
         mostrarNombreUsuarioLogueado();
         verificarAccesoAdmin(btnAdmin);
+        cargarPeriodoDesdeBD();
 
 
         for (Node node : gridPaneHorario.getChildren()) {
@@ -84,6 +92,7 @@ public class HorarioController {
         }
 
         cargarHorarioDesdeBD();
+        periodoFinalizado();
     }
 
     private void cargarHorarioDesdeBD() {
@@ -255,6 +264,46 @@ public class HorarioController {
     }
 
 
+    private void cargarPeriodoDesdeBD() {
+        String sql = "SELECT fecha_inicio, fecha_fin FROM periodo ORDER BY fecha_id DESC FETCH FIRST 1 ROW ONLY";
+
+        try (Connection conn = ConexionBDRegistro.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                LocalDate fechaInicio = rs.getDate("fecha_inicio").toLocalDate();
+                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy");
+                String periodoGuardado = "Periodo asignado: " + fechaInicio.format(formatter) + " al " + fechaFin.format(formatter);
+                lblPeriodo.setText(periodoGuardado);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al cargar el periodo desde la BD: " + e.getMessage());
+        }
+    }
+
+    private void periodoFinalizado() {
+        String sql = "SELECT fecha_inicio, fecha_fin FROM periodo ORDER BY fecha_id DESC FETCH FIRST 1 ROW ONLY";
+
+        try (Connection conn = ConexionBDRegistro.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+                LocalDate hoy = LocalDate.now();
+
+                if (hoy.isAfter(fechaFin)) {
+                    btnModificar.setDisable(true);
+                    System.out.println("El periodo ha terminado y ya no se puede modificar.");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar periodo: " + e.getMessage());
+        }
+    }
 }
 
 
