@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.lang.model.type.NullType;
 import java.io.IOException;
 import java.sql.*;
 
