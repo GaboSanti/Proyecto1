@@ -29,8 +29,10 @@ public class HelloController {
             if (compararDatos(correoIngresado, passwordIngresado)) {
                 SesionUsuario.setCorreoInstitucional(correoIngresado);
                 cambiarVentana("Horario.fxml", event, "Horario");
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Información", "Selecciona tu horario disponible dando click en las casillas.");
+
             }else {
-                mostrarAlerta("Error", "Datos incorrectas \nEl correo o contraseña son incorrectos.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "Datos incorrectas \nEl correo o contraseña son incorrectos.");
             }
         }
     }
@@ -51,7 +53,7 @@ public class HelloController {
 
     private boolean validarFormulario(String correoIngresado, String passwordIngresado ) {
         if (correoIngresado.isEmpty() || passwordIngresado.isEmpty()) {
-            mostrarAlerta("Error", "Campos vacíos \nPor favor complete todos los campos.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "Campos vacíos \nPor favor complete todos los campos.");
             return false;
         }
         return true;
@@ -75,7 +77,7 @@ public class HelloController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            mostrarAlerta("Error", "Error de base de datos \nOcurrió un error al consultar las credenciales.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "Error de base de datos \nOcurrió un error al consultar las credenciales.");
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -88,12 +90,12 @@ public class HelloController {
         return false;
     }
 
-    private void mostrarAlerta(String titulo, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(contenido);
-        alert.showAndWait();
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 
 }
