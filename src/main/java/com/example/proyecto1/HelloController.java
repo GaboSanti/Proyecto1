@@ -15,12 +15,36 @@ import javafx.stage.Screen;
 
 import java.io.IOException;
 import java.sql.*;
+import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
+
+
 
 public class HelloController {
+
+
     @FXML
     private TextField txtCorreo;
     @FXML
     private TextField txtPassword;
+    @FXML
+    private AnchorPane paneLogin;
+
+
+    @FXML
+    private void initialize(){
+        Platform.runLater(() -> {
+            Stage stage = (Stage) paneLogin.getScene().getWindow();
+            stage.setMaximized(true);
+            stage.centerOnScreen();
+
+            // para que crezca con la ventana
+            paneLogin.prefWidthProperty().bind(stage.widthProperty());
+            paneLogin.prefHeightProperty().bind(stage.heightProperty());
+        });
+    }
+
+
 
     @FXML
     protected void onLoginClick(ActionEvent event) throws IOException {
