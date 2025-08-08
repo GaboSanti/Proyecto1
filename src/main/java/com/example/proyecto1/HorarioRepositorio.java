@@ -79,6 +79,8 @@ public class HorarioRepositorio {
                 String correo = rs.getString("CORREO_INSTITUCIONAL");
                 String diaHora = rs.getString("DIA_HORA");
 
+                diaHora = com.example.proyecto1.util.HorarioUtils.reemplazarNumPorHoras(diaHora);
+
 
                 correo = correo.replace("\"", "\"\"");
                 diaHora = diaHora.replace("\"", "\"\"");
