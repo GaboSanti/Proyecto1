@@ -1,5 +1,10 @@
 package com.example.proyecto1.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class HorarioUtils {
 
     public static int diaToId(String sigla) {
@@ -70,6 +75,56 @@ public class HorarioUtils {
             default -> 0;
         };
     }
+
+
+    public static String intervaloIdToRango(int idIntervalo) {
+        int inicio = intervaloIdToHora(idIntervalo);
+        int fin    = intervaloIdToHora(idIntervalo + 1);
+
+        if (inicio == 0) return "";
+        if (fin == 0 || fin <= inicio) {
+            // fallback simple en caso de que no exista el siguiente intervalo
+            fin = inicio + 1;
+        }
+        return String.format("%02d:00 - %02d:00", inicio, fin);
+    }
+
+
+    public static String reemplazarNumPorHoras(String input) {
+        if (input == null || input.isEmpty()) return input;
+
+        Pattern p = Pattern.compile("\\[([^\\]]*)\\]");
+        Matcher m = p.matcher(input);
+        StringBuffer sb = new StringBuffer();
+
+        while (m.find()) {
+            String dentro = m.group(1); // p.ej. "1, 2, 3"
+            String[] tokens = dentro.split(",");
+            List<String> mapeados = new ArrayList<>();
+
+            for (String t : tokens) {
+                String s = t.trim();
+                if (s.isEmpty()) continue;
+
+                // Solo convierte si es ENTERO puro
+                if (s.matches("\\d+")) {
+                    int n = Integer.parseInt(s);
+                    String rango = intervaloIdToRango(n); // usa tu mapeo
+                    mapeados.add(rango.isEmpty() ? s : rango);
+                } else {
+                    // ya es un rango u otra cosa → lo dejamos
+                    mapeados.add(s);
+                }
+            }
+
+            String replacement = "[" + String.join(", ", mapeados) + "]";
+            m.appendReplacement(sb, Matcher.quoteReplacement(replacement));
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
+
 }
 
 
