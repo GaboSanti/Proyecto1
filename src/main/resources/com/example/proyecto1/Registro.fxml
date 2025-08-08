@@ -5,43 +5,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.RegistroController">
-    <VBox alignment="CENTER" layoutX="450.0" layoutY="41.0" prefHeight="600.0" prefWidth="450.0" spacing="12" stylesheets="@../../../StyleRegistro.css" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="41.0">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="450.0" spacing="12" style="-fx-background-color: #42a5f5;" stylesheets="@../../../StyleRegistro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.RegistroController">
 
-        <Label styleClass="title" text="REGISTRO" />
+    <Label styleClass="title" text="REGISTRO" />
 
-        <TextField fx:id="txtNombre" promptText="NOMBRE" />
+    <TextField fx:id="txtNombre" promptText="NOMBRE" />
 
-        <HBox spacing="10">
-            <TextField fx:id="txtApellido1" prefWidth="200.0" promptText="APELLIDO PATERNO" />
-            <TextField fx:id="txtApellido2" prefWidth="200.0" promptText="APELLIDO MATERNO" />
-        </HBox>
+    <HBox spacing="10">
+        <TextField fx:id="txtApellido1" prefWidth="200.0" promptText="APELLIDO PATERNO" />
+        <TextField fx:id="txtApellido2" prefWidth="200.0" promptText="APELLIDO MATERNO" />
+    </HBox>
 
-        <ComboBox fx:id="comboBox" prefWidth="400" promptText="GRADO ACADÉMICO">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Licenciatura" />
-                    <String fx:value="Maestría" />
-                    <String fx:value="Doctorado" />
-                </FXCollections>
-            </items>
-        </ComboBox>
+    <ComboBox fx:id="comboBox" prefWidth="400" promptText="GRADO ACADÉMICO">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Licenciatura" />
+                <String fx:value="Maestría" />
+                <String fx:value="Doctorado" />
+            </FXCollections>
+        </items>
+    </ComboBox>
 
-        <TextField fx:id="txtCorreo1" promptText="CORREO INSTITUCIONAL" />
-        <TextField fx:id="txtCorreo2" promptText="CORREO PERSONAL" />
-        <TextField fx:id="txtTelefono" promptText="TELÉFONO" />
+    <TextField fx:id="txtCorreo1" promptText="CORREO INSTITUCIONAL" />
+    <TextField fx:id="txtCorreo2" promptText="CORREO PERSONAL" />
+    <TextField fx:id="txtTelefono" promptText="TELÉFONO" />
 
-        <HBox spacing="5">
-            <PasswordField fx:id="txtPassword" prefWidth="250" promptText="CONTRASEÑA" />
-            <TextField fx:id="txtPasswordVisible" managed="false" prefWidth="250" promptText="CONTRASEÑA" visible="false" />
-            <Button fx:id="btnTogglePassword" text="👁" />
-        </HBox>
+    <HBox spacing="5">
+        <PasswordField fx:id="txtPassword" prefWidth="250" promptText="CONTRASEÑA" />
+        <TextField fx:id="txtPasswordVisible" managed="false" prefWidth="250" promptText="CONTRASEÑA" visible="false" />
+        <Button fx:id="btnTogglePassword" text="👁" />
+    </HBox>
 
-        <Label fx:id="lblPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
+    <Label fx:id="lblPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
 
-        <PasswordField fx:id="txtConfirmarPassword" promptText="CONFIRMAR CONTRASEÑA" />
-        <Label fx:id="lblConfirmarPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
+    <PasswordField fx:id="txtConfirmarPassword" promptText="CONFIRMAR CONTRASEÑA" />
+    <Label fx:id="lblConfirmarPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
 
-        <Button fx:id="btn_registrar" styleClass="register-button" text="REGISTRAR" />
-    </VBox>
-</AnchorPane>
+    <Button fx:id="btn_registrar" styleClass="register-button" text="REGISTRAR" />
+</VBox>
