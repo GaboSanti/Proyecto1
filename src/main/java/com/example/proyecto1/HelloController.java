@@ -65,7 +65,12 @@ public class HelloController {
 
     @FXML
     protected void irRegistro(ActionEvent event) throws IOException {
-        cambiarVentana("Registro.fxml", event, "Registro");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Registro.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setMaximized(false);
+        stage.setScene(new Scene(root));
+        stage.setTitle("Registro");
     }
 
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
