@@ -5,31 +5,33 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="832.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.HelloController">
+<Pane prefHeight="727.0" prefWidth="454.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto1.HelloController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3f9cff" height="531.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="454.0" x="413.0" AnchorPane.leftAnchor="413.0" AnchorPane.topAnchor="236.0" />
-        <Circle fill="#61ff67" layoutX="640.0" layoutY="236.0" radius="138.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="502.0" AnchorPane.topAnchor="98.0" />
-        <Arc fill="WHITE" layoutX="646.0" layoutY="363.0" length="180.0" radiusX="140.0" radiusY="140.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" AnchorPane.leftAnchor="506.0" AnchorPane.topAnchor="223.0" />
-        <Circle centerY="48.48" fill="WHITE" layoutX="640.0" layoutY="90.0" radius="93.76" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="599.7599945068359" AnchorPane.leftAnchor="546.2399978637695" AnchorPane.rightAnchor="546.2399978637695" AnchorPane.topAnchor="44.720001220703125" />
-        <TextField fx:id="txtCorreo" layoutX="432.0" layoutY="427.0" prefHeight="50.0" prefWidth="414.0" AnchorPane.leftAnchor="432.0" AnchorPane.topAnchor="427.0" />
-        <TextField fx:id="txtPassword" layoutX="432.0" layoutY="531.0" prefHeight="50.0" prefWidth="414.0" AnchorPane.leftAnchor="432.0" AnchorPane.topAnchor="531.0" />
-        <Button fx:id="btnLogin" layoutX="522.0" layoutY="624.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #5DF563;" text="Iniciar Sesión" AnchorPane.leftAnchor="522.0" AnchorPane.topAnchor="624.0">
-         <font>
-            <Font name="Roboto Light" size="20.0" />
-         </font></Button>
-        <Label layoutX="431.0" layoutY="404.0" prefHeight="22.0" prefWidth="141.0" text="Correo Institucional" AnchorPane.leftAnchor="431.0" AnchorPane.topAnchor="404.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3f9cff" height="531.0" layoutX="-413.0" layoutY="193.0" stroke="BLACK" strokeType="INSIDE" width="454.0" x="413.0" />
+        <Circle fill="#61ff67" layoutX="227.0" layoutY="193.0" radius="138.0" stroke="BLACK" strokeType="INSIDE" />
+        <Arc fill="WHITE" layoutX="227.0" layoutY="319.0" length="180.0" radiusX="140.0" radiusY="140.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+        <Circle centerY="48.48" fill="WHITE" layoutX="227.0" layoutY="49.0" radius="93.76" stroke="BLACK" strokeType="INSIDE" />
+        <TextField fx:id="txtCorreo" layoutX="20.0" layoutY="393.0" prefHeight="50.0" prefWidth="414.0" />
+        <TextField fx:id="txtPassword" layoutX="20.0" layoutY="504.0" prefHeight="50.0" prefWidth="414.0" />
+        <Button fx:id="btnLogin" layoutX="110.0" layoutY="584.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #5DF563;" text="Iniciar Sesión">
+            <font>
+                <Font name="Roboto Light" size="20.0" />
+            </font>
+        </Button>
+        <Label layoutX="19.0" layoutY="371.0" prefHeight="22.0" prefWidth="141.0" text="Correo Institucional">
             <font>
                 <Font name="Roboto Light" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="432.0" layoutY="509.0" prefHeight="16.0" text="Contraseña" AnchorPane.leftAnchor="432.0" AnchorPane.topAnchor="509.0">
+        <Label layoutX="20.0" layoutY="482.0" prefHeight="16.0" text="Contraseña">
             <font>
                 <Font name="Roboto Light" size="16.0" />
             </font>
         </Label>
-        <Button fx:id="btnRegistro" layoutX="566.0" layoutY="698.0" mnemonicParsing="false" onAction="#irRegistro" prefHeight="44.0" prefWidth="148.0" style="-fx-background-color: transparent;" text="¿No tienes cuenta?&#10;   Regístrate aquí">
+        <Button fx:id="btnRegistro" layoutX="153.0" layoutY="660.0" mnemonicParsing="false" onAction="#irRegistro" prefHeight="44.0" prefWidth="148.0" style="-fx-background-color: transparent;" text="¿No tienes cuenta?&#10;   Regístrate aquí">
             <font>
                 <Font name="Inter Regular" size="14.0" />
-            </font></Button>
+            </font>
+        </Button>
     </children>
-</AnchorPane>
+</Pane>
