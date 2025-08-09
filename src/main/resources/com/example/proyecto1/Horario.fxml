@@ -21,7 +21,7 @@
         <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" onAction="#onAdmin" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
-        <ImageView fx:id="imgLogo" fitHeight="49.0" fitWidth="95.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+        <ImageView fx:id="imgLogo" fitHeight="49.0" fitWidth="141.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
          <image>
             <Image url="@../../../img/UTEZ.jpeg" />
          </image></ImageView>
@@ -280,7 +280,7 @@
         <Button fx:id="btnModificar" layoutX="866.0" layoutY="645.0" minHeight="35.0" minWidth="80.0" onAction="#modificarHorario" text="Modificar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="866.0" />
 
         <!-- Imagen SGDD -->
-        <ImageView fx:id="imgSGDD" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="26.0">
+        <ImageView fx:id="imgSGDD" fitHeight="103.0" fitWidth="80.0" layoutX="13.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.945945739746094" AnchorPane.leftAnchor="13.0">
          <image>
             <Image url="@../../../img/SGDD.jpeg" />
          </image></ImageView>
