@@ -21,27 +21,42 @@
         <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" onAction="#onAdmin" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
-        <ImageView fx:id="imgLogo" fitHeight="49.0" fitWidth="95.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="5.0">
+        <ImageView fx:id="imgLogo" fitHeight="49.0" fitWidth="95.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
          <image>
-            <Image url="@../../../img/Utez.jpeg" />
+            <Image url="@../../../img/UTEZ.jpeg" />
          </image></ImageView>
 
-        <Label layoutX="345.0" layoutY="19.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="19.0">
+        <Label layoutX="388.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="388.0" AnchorPane.topAnchor="17.0">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
         </Label>
 
         <!-- Nombre y fecha -->
-        <Label fx:id="lblFecha" alignment="CENTER" layoutX="735.0" layoutY="25.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="25.0">
+        <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="LEFT" graphicTextGap="8" layoutX="735.0" layoutY="25.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="25.0">
             <font>
                 <Font size="16.0" />
-            </font></Label>
-        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="259.0" text="mario pacheco hernandez" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
+            </font>
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/Calendario.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
+        <Label fx:id="lblNombre" alignment="CENTER" contentDisplay="LEFT" graphicTextGap="8" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="259.0" text="mario pacheco hernandez" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
             <font>
                 <Font size="16.0" />
-            </font></Label>
-
+            </font>
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/Usuario.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
         <!-- Tabla de horario -->
         <GridPane fx:id="gridPaneHorario" gridLinesVisible="true" prefHeight="533.0" prefWidth="1087.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="88.0">
             <columnConstraints>
@@ -272,15 +287,6 @@
 
         <!-- Línea bajo título -->
         <Label fx:id="lblPeriodo" alignment="TOP_CENTER" layoutX="262.0" layoutY="60.0" prefHeight="21.0" prefWidth="604.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="60.0" />
-      <ImageView fx:id="imgCalendario" fitHeight="25.0" fitWidth="26.0" layoutX="723.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/Calendario.png" />
-         </image></ImageView>
-      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="927.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/Usuario.png" />
-         </image>
-      </ImageView>
 
     </children>
 </AnchorPane>
