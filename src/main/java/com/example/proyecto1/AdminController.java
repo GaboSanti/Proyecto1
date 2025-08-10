@@ -56,6 +56,8 @@ public class AdminController implements Initializable {
         usuarioBD = new UsuarioBD();
         mostrarFechaActual();// Llama a la funcion para mostrar la fecha actual en la interfaz
         mostrarNombreUsuarioLogueado();
+        cargarPeriodoDesdeBD();// Carga el periodo al inicializar
+
     }
 
     private void mostrarFechaActual() {
