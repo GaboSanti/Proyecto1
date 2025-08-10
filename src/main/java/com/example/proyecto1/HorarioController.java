@@ -75,6 +75,8 @@ public class HorarioController {
         cargarPeriodoDesdeBD();
 
 
+
+
         for (Node node : gridPaneHorario.getChildren()) {
             if (node instanceof Button boton) {
                 boton.setStyle("-fx-background-color: #FF6666; -fx-border-color: black; -fx-border-width: 1px;");
@@ -133,6 +135,9 @@ public class HorarioController {
 
         horarioBloqueado = true;
         btnGuardar.setDisable(true);
+        javafx.application.Platform.runLater(() ->
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Información", "Selecciona tu horario disponible dando click en las casillas.")
+        );
     }
 
     @FXML
