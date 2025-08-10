@@ -19,7 +19,10 @@
         <Button fx:id="btnAdmin" minHeight="35.0" minWidth="80.0" onAction="#onIrAdmin" text="Admin" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="200.0" />
         <Button fx:id="btnSalir" minHeight="35.0" minWidth="80.0" onAction="#onSalir" text="Salir" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="257.0" />
 
-        <ImageView fx:id="imgLogo" fitHeight="41.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="7.0" />
+        <ImageView fx:id="imgLogo" fitHeight="49.0" fitWidth="141.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+            <image>
+                <Image url="@../../../img/UTEZ.jpeg" />
+            </image></ImageView>
         <Label layoutX="414.0" layoutY="17.0" text="Disponibilidad de horario" AnchorPane.leftAnchor="414.0" AnchorPane.topAnchor="17.0">
             <font>
                 <Font name="System Bold" size="26.0" />
@@ -27,30 +30,38 @@
         </Label>
 
         <!-- Nombre y fecha -->
-        <Label fx:id="lblFecha" alignment="CENTER" layoutX="735.0" layoutY="25.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="25.0">
+        <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="LEFT" graphicTextGap="8" layoutX="735.0" layoutY="25.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="25.0">
             <font>
                 <Font size="16.0" />
-            </font></Label>
-        <Label fx:id="lblNombre" alignment="CENTER" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="259.0" text="mario pacheco hernandez" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
+            </font>
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/Calendario.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
+        <Label fx:id="lblNombre" alignment="CENTER" contentDisplay="LEFT" graphicTextGap="8" layoutX="1081.0" layoutY="23.0" prefHeight="25.0" prefWidth="259.0" text="mario pacheco hernandez" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="23.0">
             <font>
                 <Font size="16.0" />
-            </font></Label>
-
-        <ImageView fx:id="imgCalendario" fitHeight="25.0" fitWidth="26.0" layoutX="723.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../img/Calendario.png" />
-            </image></ImageView>
-        <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="927.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../img/Usuario.png" />
-            </image>
-        </ImageView>
+            </font>
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/Usuario.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Label>
 
 
         <Button fx:id="btnGuardar" layoutX="794.0" layoutY="632.0" minHeight="35.0" minWidth="80.0" onAction="#onGuardar" text="Guardar" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="794.0" />
 
-        <ImageView fx:id="imgSGDD" fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="26.0" />
-
+        <ImageView fx:id="imgSGDD" fitHeight="103.0" fitWidth="80.0" layoutX="13.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.945945739746094" AnchorPane.leftAnchor="13.0">
+            <image>
+                <Image url="@../../../img/SGDD.jpeg" />
+            </image></ImageView>
         <Label fx:id="lblPeriodo" alignment="CENTER" layoutX="262.0" layoutY="60.0" prefHeight="21.0" prefWidth="604.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="60.0" />
 
 
