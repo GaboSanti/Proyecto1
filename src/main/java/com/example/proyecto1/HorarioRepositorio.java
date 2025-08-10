@@ -66,7 +66,12 @@ public class HorarioRepositorio {
     }
 
     public boolean exportarHorarios(String rutaArchivo) {
-        String sql = "SELECT CORREO_INSTITUCIONAL, DIA_HORA FROM HORARIO";
+        String sql =
+                "SELECT u.CORREO_INSTITUCIONAL AS CORREO_INSTITUCIONAL, " +
+                        "       NVL(h.DIA_HORA, '') AS DIA_HORA " +
+                        "FROM USUARIOS u " +
+                        "LEFT JOIN HORARIO h " +
+                        "  ON h.CORREO_INSTITUCIONAL = u.CORREO_INSTITUCIONAL";
 
         try (Connection conn = ConexionBDRegistro.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -79,7 +84,13 @@ public class HorarioRepositorio {
                 String correo = rs.getString("CORREO_INSTITUCIONAL");
                 String diaHora = rs.getString("DIA_HORA");
 
-                diaHora = com.example.proyecto1.util.HorarioUtils.reemplazarNumPorHoras(diaHora);
+
+                if (diaHora == null) diaHora = "";
+
+
+                if (!diaHora.isEmpty()) {
+                    diaHora = com.example.proyecto1.util.HorarioUtils.reemplazarNumPorHoras(diaHora);
+                }
 
 
                 correo = correo.replace("\"", "\"\"");
@@ -97,6 +108,8 @@ public class HorarioRepositorio {
             return false;
         }
     }
+
+
 }
 
 
