@@ -193,30 +193,41 @@ public class HorarioController {
 
     @FXML
     protected void onPerfil(ActionEvent event) throws IOException {
-        cambiarVentana("Perfil.fxml", event, "Perfil");
+        cambiarVentana("Perfil.fxml", event, "Perfil", true);
     }
 
     @FXML
     protected void onAdmin(ActionEvent event) throws IOException {
-        cambiarVentana("Admin.fxml", event, "Administrador");
+        cambiarVentana("Admin.fxml", event, "Administrador", true);
     }
 
     @FXML
     protected void onSalir(ActionEvent event) throws IOException {
-        cambiarVentana("hello-view.fxml", event, "Iniciar Sesion");
+        cambiarVentana("hello-view.fxml", event, "Iniciar Sesion", false);
+
     }
 
     @FXML
     protected void onHorario(ActionEvent event) throws IOException {
-        cambiarVentana("Horario.fxml", event, "Horario");
+        cambiarVentana("Horario.fxml", event, "Horario", true);
     }
 
-    private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
+    private void cambiarVentana(String fxml, ActionEvent event, String titulo, boolean maximized) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle(titulo);
+        if (maximized) {
+            stage.setMaximized(true);
+            stage.setResizable(true);
+        } else {
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.centerOnScreen();
+        }
+
         stage.show();
     }
 
@@ -299,6 +310,9 @@ public class HorarioController {
 
                 if (hoy.isAfter(fechaFin)) {
                     btnModificar.setDisable(true);
+                    btnGuardar.setDisable(true);
+                    horarioBloqueado = true;
+
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes editar.");
 
                 }
