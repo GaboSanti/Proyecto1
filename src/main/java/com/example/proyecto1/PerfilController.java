@@ -72,7 +72,7 @@ public class PerfilController implements Initializable {
                 // Aquí es donde asignas los valores a los  Labels
                 lblNombreUsuario.setText(usuariosActual.getNombre()); // Asigna Nombre a lblNombreUsuario
                 if(lblNombre != null) {
-                    lblNombre.setText(usuariosActual.getNombre() + " " + usuariosActual.getApellidoPaterno());
+                    lblNombre.setText(usuariosActual.getNombre() + " " + usuariosActual.getApellidoPaterno() +" " + usuariosActual.getApellidoMaterno());
                 }
                 lblApellido_PaternoUsuario.setText(usuariosActual.getApellidoPaterno()); // Asigna ApellidoPaterno a lblApellido_PaternoUsuario
                 lblApellido_MaternoUsuario.setText(usuariosActual.getApellidoMaterno()); // Asigna ApellidoMaterno a lblApellido_MaternoUsuario
