@@ -38,7 +38,12 @@
 
     <Label fx:id="lblPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
 
-    <PasswordField fx:id="txtConfirmarPassword" promptText="CONFIRMAR CONTRASEÑA" />
+    <HBox prefWidth="500.0" spacing="5">
+    <PasswordField fx:id="txtConfirmarPassword" promptText="CONFIRMAR CONTRASEÑA" HBox.hgrow="ALWAYS" />
+        <TextField fx:id="txtPasswordVisible2" managed="false" prefWidth="250" promptText="CONTRASEÑA" visible="false" HBox.hgrow="ALWAYS" />
+        <Button fx:id="btnTogglePassword2" text="👁" />
+    </HBox>
+
     <Label fx:id="lblConfirmarPasswordHint" style="-fx-text-fill: red; -fx-font-size: 11px;" wrapText="true" />
 
     <Button fx:id="btn_registrar" styleClass="register-button" text="REGISTRAR" />
