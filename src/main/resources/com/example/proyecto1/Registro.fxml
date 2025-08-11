@@ -32,7 +32,7 @@
 
     <HBox prefWidth="500.0" spacing="5">
         <PasswordField fx:id="txtPassword" prefWidth="270.0" promptText="CONTRASEÑA" HBox.hgrow="ALWAYS" />
-        <TextField fx:id="txtPasswordVisible" managed="false" prefWidth="250" promptText="CONTRASEÑA" visible="false" />
+        <TextField fx:id="txtPasswordVisible" managed="false" prefWidth="250" promptText="CONTRASEÑA" visible="false" HBox.hgrow="ALWAYS" />
         <Button fx:id="btnTogglePassword" text="👁" />
     </HBox>
 
