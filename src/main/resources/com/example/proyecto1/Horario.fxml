@@ -70,21 +70,21 @@
             </columnConstraints>
             <rowConstraints>
                 <!-- 15 filas con altura porcentual uniforme -->
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="6.6667"/>
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
+                <RowConstraints percentHeight="6.6667" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <Button fx:id="btnLU07" maxWidth="Infinity" text="      " GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -129,7 +129,7 @@
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="3" GridPane.rowIndex="12" />
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="3" GridPane.rowIndex="13" />
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="3" GridPane.rowIndex="14" />
-                <Button maxWidth="Infinity" text="      " GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Button maxWidth="Infinity" prefHeight="30.0" prefWidth="112.0" text="      " GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="4" GridPane.rowIndex="2" />
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="4" GridPane.rowIndex="3" />
                 <Button maxWidth="Infinity" text="      " GridPane.columnIndex="4" GridPane.rowIndex="4" />
