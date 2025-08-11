@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 
 import com.example.proyecto1.util.HorarioUtils;
 import com.example.proyecto1.model.HorarioUsuariosPorDia;
@@ -73,6 +75,18 @@ public class HorarioController {
         mostrarNombreUsuarioLogueado();
         verificarAccesoAdmin(btnAdmin);
         cargarPeriodoDesdeBD();
+
+        for (Node n : gridPaneHorario.getChildren()) {
+            if (n instanceof Region) {
+                Region r = (Region) n;
+                r.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE); // ya tienes el max vía CSS, esto refuerza
+            }
+            // Hace que el GridPane los haga crecer en ambas direcciones
+            GridPane.setHgrow(n, Priority.ALWAYS);
+            GridPane.setVgrow(n, Priority.ALWAYS);
+            GridPane.setFillWidth(n, true);
+            GridPane.setFillHeight(n, true);
+        }
 
 
 
