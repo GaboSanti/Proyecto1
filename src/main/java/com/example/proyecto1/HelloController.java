@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -30,20 +28,24 @@ public class HelloController {
     @FXML
     private AnchorPane paneLogin;
 
+    @FXML
+    private TextField txtPasswordVisible;
+    @FXML
+    private Button btnTogglePassword;
+
+
 
     @FXML
-    private void initialize(){
-        Platform.runLater(() -> {
-            Stage stage = (Stage) paneLogin.getScene().getWindow();
-            stage.setMaximized(true);
-            stage.centerOnScreen();
+    public void initialize(){
+        btnTogglePassword.setOnAction(e -> togglePasswordVisibility());
+        txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
 
-            // para que crezca con la ventana
-            paneLogin.prefWidthProperty().bind(stage.widthProperty());
-            paneLogin.prefHeightProperty().bind(stage.heightProperty());
-        });
+
+        txtPasswordVisible.setVisible(false);
+        txtPasswordVisible.setManaged(false);
+        txtPassword.setVisible(true);
+        txtPassword.setManaged(true);
     }
-
 
 
     @FXML
@@ -55,7 +57,6 @@ public class HelloController {
             if (compararDatos(correoIngresado, passwordIngresado)) {
                 SesionUsuario.setCorreoInstitucional(correoIngresado);
                 cambiarVentana("Horario.fxml", event, "Horario");
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Información", "Selecciona tu horario disponible dando click en las casillas.");
 
             }else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error", "Datos incorrectas \nEl correo o contraseña son incorrectos.");
@@ -135,6 +136,23 @@ public class HelloController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+
+
+    private void togglePasswordVisibility() {
+        boolean isPasswordVisible = txtPassword.isVisible();
+
+        txtPasswordVisible.setVisible(isPasswordVisible);
+        txtPasswordVisible.setManaged(isPasswordVisible);
+        txtPassword.setVisible(!isPasswordVisible);
+        txtPassword.setManaged(!isPasswordVisible);
+
+        // Se asegura de que el foco se mantenga en el campo visible
+        if (isPasswordVisible) {
+            txtPasswordVisible.requestFocus();
+        } else {
+            txtPassword.requestFocus();
+        }
     }
 
 }
