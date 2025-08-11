@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+
 
 public class RegistroController implements Initializable {
 
@@ -35,21 +38,40 @@ public class RegistroController implements Initializable {
     @FXML private Button btnTogglePassword;
 
     @FXML private PasswordField txtConfirmarPassword;
+    @FXML private TextField txtPasswordVisible2;
+    @FXML private Button btnTogglePassword2;
+
     @FXML private Label lblPasswordHint;
     @FXML private Label lblConfirmarPasswordHint;
 
     @FXML private Button btn_registrar;
+    @FXML private VBox vboxRegistro;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtNombre.setFocusTraversable(false);
+        txtApellido1.setFocusTraversable(false);
+        txtApellido2.setFocusTraversable(false);
+        txtCorreo1.setFocusTraversable(false);
+        txtCorreo2.setFocusTraversable(false);
+        txtTelefono.setFocusTraversable(false);
+        txtPassword.setFocusTraversable(false);
+        txtPasswordVisible.setFocusTraversable(false);
+
+
+
+
         comboBox.setItems(FXCollections.observableArrayList("Licenciatura", "Maestría", "Doctorado"));
 
         // Se cambió para que el manejador de eventos reciba el ActionEvent
         btn_registrar.setOnAction(this::validarFormulario);
 
         btnTogglePassword.setOnAction(e -> togglePasswordVisibility());
+        btnTogglePassword2.setOnAction(e -> togglePasswordVisibility2());
         // Se asegura que ambos campos se actualicen mutuamente
         txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
+        txtPasswordVisible2.textProperty().bindBidirectional(txtConfirmarPassword.textProperty());
+
 
         txtPassword.textProperty().addListener((obs, oldVal, newVal) -> validarSeguridadPassword(newVal));
 
@@ -63,9 +85,13 @@ public class RegistroController implements Initializable {
 
         // Configuración inicial de la visibilidad
         txtPasswordVisible.setVisible(false);
+        txtPasswordVisible2.setVisible(false);
         txtPasswordVisible.setManaged(false);
+        txtPasswordVisible2.setManaged(false);
         txtPassword.setVisible(true);
+        txtConfirmarPassword.setVisible(true);
         txtPassword.setManaged(true);
+        txtConfirmarPassword.setManaged(true);
     }
 
     // Método corregido para alternar la visibilidad de la contraseña
@@ -80,8 +106,26 @@ public class RegistroController implements Initializable {
         // Se asegura de que el foco se mantenga en el campo visible
         if (isPasswordVisible) {
             txtPasswordVisible.requestFocus();
+
         } else {
             txtPassword.requestFocus();
+        }
+    }
+
+    private void togglePasswordVisibility2() {
+        boolean isPasswordVisible = txtConfirmarPassword.isVisible();
+
+        txtPasswordVisible2.setVisible(isPasswordVisible);
+        txtPasswordVisible2.setManaged(isPasswordVisible);
+        txtConfirmarPassword.setVisible(!isPasswordVisible);
+        txtConfirmarPassword.setManaged(!isPasswordVisible);
+
+        // Se asegura de que el foco se mantenga en el campo visible
+        if (isPasswordVisible) {
+            txtPasswordVisible2.requestFocus();
+
+        } else {
+            txtConfirmarPassword.requestFocus();
         }
     }
 
