@@ -76,6 +76,7 @@ public class HorarioController {
         verificarAccesoAdmin(btnAdmin);
         cargarPeriodoDesdeBD();
 
+
         for (Node n : gridPaneHorario.getChildren()) {
             if (n instanceof Region) {
                 Region r = (Region) n;

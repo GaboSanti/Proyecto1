@@ -118,12 +118,20 @@ public class AdminController implements Initializable {
 
     @FXML
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        boolean maximized = stage.isMaximized();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+
+        if (stage.getScene() == null) {
+            stage.setScene(new Scene(root));              // sin width/height
+        } else {
+            stage.getScene().setRoot(root);               // reutiliza la Scene
+        }
+
         stage.setTitle(titulo);
-        stage.show();
+
     }
 
 
