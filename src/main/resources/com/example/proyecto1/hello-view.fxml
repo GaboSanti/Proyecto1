@@ -12,7 +12,6 @@
         <Arc fill="WHITE" layoutX="227.0" layoutY="319.0" length="180.0" radiusX="140.0" radiusY="140.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
         <Circle centerY="48.48" fill="WHITE" layoutX="227.0" layoutY="49.0" radius="93.76" stroke="BLACK" strokeType="INSIDE" />
         <TextField fx:id="txtCorreo" layoutX="20.0" layoutY="393.0" prefHeight="50.0" prefWidth="414.0" />
-        <TextField fx:id="txtPassword" layoutX="20.0" layoutY="504.0" prefHeight="50.0" prefWidth="414.0" />
         <Button fx:id="btnLogin" layoutX="110.0" layoutY="584.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #5DF563;" text="Iniciar Sesión">
             <font>
                 <Font name="Roboto Light" size="20.0" />
@@ -28,10 +27,22 @@
                 <Font name="Roboto Light" size="16.0" />
             </font>
         </Label>
-        <Button fx:id="btnRegistro" layoutX="153.0" layoutY="660.0" mnemonicParsing="false" onAction="#irRegistro" prefHeight="44.0" prefWidth="148.0" style="-fx-background-color: transparent;" text="¿No tienes cuenta?&#10;   Regístrate aquí">
+        <Button fx:id="btnRegistro" layoutX="153.0" layoutY="660.0" mnemonicParsing="false" onAction="#irRegistro" prefHeight="60.0" prefWidth="148.0" style="-fx-background-color: transparent;" text="¿No tienes cuenta?&#10;   Regístrate aquí">
             <font>
                 <Font name="Inter Regular" size="14.0" />
             </font>
         </Button>
+        <HBox alignment="CENTER_LEFT" fillHeight="true" layoutX="20.0" layoutY="510.0" prefHeight="50.0" prefWidth="414.0" spacing="5">
+
+
+            <PasswordField fx:id="txtPassword" maxWidth="Infinity" prefHeight="50.0" HBox.hgrow="ALWAYS" />
+
+            <TextField fx:id="txtPasswordVisible" managed="false" maxWidth="Infinity" prefHeight="50.0" promptText="CONTRASEÑA" visible="false" HBox.hgrow="ALWAYS" />
+
+
+            <Button fx:id="btnTogglePassword" maxHeight="40.0" minWidth="20.0" prefHeight="20.0" prefWidth="40.0" text="👁" />
+        </HBox>
+
+
     </children>
 </Pane>
