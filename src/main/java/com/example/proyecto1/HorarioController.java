@@ -76,6 +76,7 @@ public class HorarioController {
         verificarAccesoAdmin(btnAdmin);
         cargarPeriodoDesdeBD();
 
+
         for (Node n : gridPaneHorario.getChildren()) {
             if (n instanceof Region) {
                 Region r = (Region) n;
@@ -106,9 +107,8 @@ public class HorarioController {
                 });
             }
         }
-
-        cargarHorarioDesdeBD();
         periodoFinalizado();
+        cargarHorarioDesdeBD();
     }
 
     private void cargarHorarioDesdeBD() {
@@ -117,7 +117,16 @@ public class HorarioController {
 
         HorarioRepositorio repo = new HorarioRepositorio();
         HorarioUsuariosPorDia horarioGuardado = repo.obtenerHorarioPorCorreo(correo);
-        if (horarioGuardado == null) return;
+        if (horarioGuardado == null) {
+            horarioBloqueado = false;
+            btnGuardar.setDisable(false);
+            javafx.application.Platform.runLater(() ->
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Información", "Selecciona tu horario disponible dando click en las casillas.")
+            );
+            return;
+        }
+
+
 
         horarioSeleccionado.clear();
 
@@ -332,7 +341,7 @@ public class HorarioController {
                     btnGuardar.setDisable(true);
                     horarioBloqueado = true;
 
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes editar.");
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes modificar.");
 
                 }
             }

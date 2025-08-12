@@ -198,12 +198,21 @@ public class PerfilController implements Initializable {
 
     //metodo  para realizar el cambio de ventanas
     private void cambiarVentana(String fxml, ActionEvent event, String titulo) throws IOException {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        boolean maximized = stage.isMaximized();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+
+        if (stage.getScene() == null) {
+            stage.setScene(new Scene(root));              // sin width/height
+        } else {
+            stage.getScene().setRoot(root);               // reutiliza la Scene
+        }
+
         stage.setTitle(titulo);
-        stage.show();
+
+
     }
     // metodo  para mostrar mensajes de alerta al usuario
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
