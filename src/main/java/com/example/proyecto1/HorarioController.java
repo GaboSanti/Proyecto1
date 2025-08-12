@@ -107,9 +107,8 @@ public class HorarioController {
                 });
             }
         }
-
-        cargarHorarioDesdeBD();
         periodoFinalizado();
+        cargarHorarioDesdeBD();
     }
 
     private void cargarHorarioDesdeBD() {
@@ -342,7 +341,7 @@ public class HorarioController {
                     btnGuardar.setDisable(true);
                     horarioBloqueado = true;
 
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes editar.");
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo", "El periodo ha terminado ya no puedes modificar.");
 
                 }
             }
