@@ -81,7 +81,7 @@ public class AdminController implements Initializable {
                 pstmt.setDate(2, java.sql.Date.valueOf(fechaSeleccionadaFinal));
 
                 pstmt.executeUpdate();
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo Asignado con exito", "Periodo guardado en la base de datos de Oracle. ");
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Periodo Asignado con exito", "Periodo asignado correctamente. ");
 
 
                 // Vuelve a cargar el periodo para actualizar la etiqueta
