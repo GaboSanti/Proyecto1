@@ -118,7 +118,16 @@ public class HorarioController {
 
         HorarioRepositorio repo = new HorarioRepositorio();
         HorarioUsuariosPorDia horarioGuardado = repo.obtenerHorarioPorCorreo(correo);
-        if (horarioGuardado == null) return;
+        if (horarioGuardado == null) {
+            horarioBloqueado = false;
+            btnGuardar.setDisable(false);
+            javafx.application.Platform.runLater(() ->
+                    mostrarAlerta(Alert.AlertType.INFORMATION, "Información", "Selecciona tu horario disponible dando click en las casillas.")
+            );
+            return;
+        }
+
+
 
         horarioSeleccionado.clear();
 
